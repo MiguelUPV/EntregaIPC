@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="679.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="311.0" fitWidth="419.0" layoutX="14.0" layoutY="184.0">
+         <image>
+            <Image url="@../../../../../../Downloads/3baa6171eb2833d916b45fe0161fea38.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="479.0" layoutY="80.0" prefHeight="489.0" prefWidth="429.0">
+         <children>
+            <Label contentDisplay="CENTER" layoutX="120.0" layoutY="39.0" prefHeight="58.0" prefWidth="189.0" text="LOGIN" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

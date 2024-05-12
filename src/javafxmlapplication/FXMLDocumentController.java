@@ -37,7 +37,7 @@ public class FXMLDocumentController implements Initializable {
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        String antonio = "alcachofa";
     }    
     
 }

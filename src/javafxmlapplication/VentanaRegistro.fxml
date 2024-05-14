@@ -1,16 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="javafxmlapplication.VentanaRegistroController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaRegistroController">
    <children>
-      <Text layoutX="169.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HIJO DE PUTA" wrappingWidth="261.4937744140625">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
+      <GridPane prefHeight="500.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="registro" />
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+                  <TextField fx:id="cajaName" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
+                  <TextField fx:id="cajaUser" />
+                  <Label fx:id="errorUser" text="Este usuario ya esta registrado." visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
+                  <TextField fx:id="cajaCorreo" />
+                  <Label fx:id="errorCorreo" text="El formato del correo no es correcto" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
+                  <PasswordField fx:id="cajaPassword" />
+                  <Label fx:id="errorPassword" text="La contraseña debe contener al menos seis caracteres" visible="false" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña" />
+                  <PasswordField fx:id="cajaRepetir" />
+                  <Label fx:id="errorRepetir" text="Las contraseñas no coinciden" visible="false" />
+               </children>
+            </VBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <children>
+                  <Button fx:id="bRegist" mnemonicParsing="false" onAction="#registrarse" text="Registrar">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="bCancel" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto perfil" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="bFoto" mnemonicParsing="false" onAction="#subirFoto" text="Subir foto" />
+                        <Text fx:id="nombreImagen" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+               <children>
+                  <Text fx:id="cajaApellido" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido" />
+                  <TextField />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

@@ -1,104 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaRegistroController">
+<AnchorPane id="AnchorPane" prefHeight="586.0" prefWidth="196.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaRegistroController">
    <children>
-      <GridPane prefHeight="500.0" prefWidth="600.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="registro" />
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+      <BorderPane prefHeight="618.0" prefWidth="464.0">
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-                  <TextField fx:id="cajaName" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-                  <TextField fx:id="cajaUser" />
-                  <Label fx:id="errorUser" text="Este usuario ya esta registrado." visible="false" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
-                  <TextField fx:id="cajaCorreo" />
-                  <Label fx:id="errorCorreo" text="El formato del correo no es correcto" visible="false" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" />
-                  <PasswordField fx:id="cajaPassword" />
-                  <Label fx:id="errorPassword" text="La contraseña debe contener al menos seis caracteres" visible="false" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="6">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña" />
-                  <PasswordField fx:id="cajaRepetir" />
-                  <Label fx:id="errorRepetir" text="Las contraseñas no coinciden" visible="false" />
-               </children>
-            </VBox>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
-               <children>
-                  <Button fx:id="bRegist" mnemonicParsing="false" onAction="#registrarse" text="Registrar">
-                     <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" />
-                     </HBox.margin>
+                  <Text fill="#2b1994" layoutX="83.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Regístrate">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="64.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="62.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="69.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="67.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="63.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="64.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir contraseña:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="cajaName" layoutX="67.0" layoutY="155.0" prefHeight="22.0" prefWidth="224.0" />
+                  <TextField fx:id="cajaApellido" layoutX="67.0" layoutY="219.0" prefHeight="22.0" prefWidth="224.0" />
+                  <TextField fx:id="cajaUser" layoutX="67.0" layoutY="284.0" prefHeight="22.0" prefWidth="224.0" />
+                  <TextField fx:id="cajaCorreo" layoutX="67.0" layoutY="343.0" prefHeight="22.0" prefWidth="224.0" />
+                  <PasswordField fx:id="cajaPassword" layoutX="67.0" layoutY="406.0" prefHeight="22.0" prefWidth="224.0" />
+                  <PasswordField fx:id="cajaRepetir" layoutX="67.0" layoutY="475.0" prefHeight="22.0" prefWidth="224.0" />
+                  <Button fx:id="bCancel" layoutX="378.0" layoutY="569.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="22.0" prefWidth="72.0" style="-fx-background-color: navy;" text="Cancel" textFill="WHITE">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="12.0" />
+                     </font>
                   </Button>
-                  <Button fx:id="bCancel" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
-                     <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" />
-                     </HBox.margin>
+                  <Button fx:id="bRegist" layoutX="291.0" layoutY="569.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="22.0" prefWidth="72.0" style="-fx-background-color: navy;" text="Registrar" textFill="WHITE">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="12.0" />
+                     </font>
                   </Button>
+                  <Text layoutX="61.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subir foto:">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="bFoto" layoutX="69.0" layoutY="547.0" mnemonicParsing="false" onAction="#subirFoto" prefHeight="22.0" prefWidth="72.0" style="-fx-background-color: navy;" text="Subir foto" textFill="WHITE">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="12.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="errorUser" fill="RED" layoutX="302.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sin espacios / No se repite" visible="false" />
+                  <Text fx:id="errorCorreo" fill="RED" layoutX="302.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo incorrecto" visible="false" />
+                  <Text fx:id="errorPassword" fill="RED" focusTraversable="true" layoutX="302.0" layoutY="423.0" pickOnBounds="true" smooth="false" strokeType="OUTSIDE" strokeWidth="20.0" text="+6 núm y letras" visible="false" wrappingWidth="200.671875" />
+                  <Text fx:id="errorRepetir" fill="RED" layoutX="302.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña no coincide" visible="false" />
                </children>
-            </HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="7">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto perfil" />
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="bFoto" mnemonicParsing="false" onAction="#subirFoto" text="Subir foto" />
-                        <Text fx:id="nombreImagen" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-               <children>
-                  <Text fx:id="cajaApellido" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido" />
-                  <TextField />
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
+            </Pane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>

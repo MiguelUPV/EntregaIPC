@@ -5,6 +5,7 @@
  */
 package javafxmlapplication;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,8 +24,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.scene.input.KeyEvent;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -42,7 +45,7 @@ public class FXMLDocumentController implements Initializable {
     
     private Button bIniciar;
     @FXML
-    private Label textError;
+    private Text textError;
     @FXML
     private PasswordField cajaPassword;
     @FXML
@@ -133,4 +136,17 @@ public class FXMLDocumentController implements Initializable {
     
     }
     
+    @FXML
+    private void accionarBotonIniciarConEnter(KeyEvent event) throws IOException {
+        if (KeyCode.ENTER == event.getCode()) {
+            // Llamar al método que maneja el evento del botón "bIniciar"
+            try {
+                IniciarSesion(null);
+            } catch (IOException | AcountDAOException e) {
+                e.printStackTrace();
+            }
+        }
+    
+
+    }
 }

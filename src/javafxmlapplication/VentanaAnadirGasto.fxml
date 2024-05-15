@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="345.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="javafxmlapplication.VentanaAnadirGastoController">
+   <children>
+      <BorderPane layoutX="73.0" layoutY="19.0" prefHeight="527.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#2428a9" layoutX="57.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Gasto" wrappingWidth="231.7366828918457">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="36.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="33.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+                        <TextField fx:id="cajaNombre" layoutX="34.0" layoutY="124.0" />
+                        <Text layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
+                        <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" onMouseEntered="#elegirCategoria" prefWidth="150.0" />
+                        <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" text="+" />
+                        <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe" />
+                        <TextField fx:id="cajaCantidad" layoutX="33.0" layoutY="251.0" prefHeight="25.0" prefWidth="107.0" />
+                        <Text layoutX="177.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" />
+                        <DatePicker fx:id="cajaFecha" layoutX="177.0" layoutY="251.0" prefHeight="25.0" prefWidth="136.0" />
+                        <Text layoutX="34.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción (opcional)" />
+                        <TextArea fx:id="cajaDesc" layoutX="33.0" layoutY="321.0" prefHeight="62.0" prefWidth="281.0" />
+                        <Text layoutX="33.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subir foto" />
+                        <Button fx:id="bSubirFoto" layoutX="33.0" layoutY="434.0" mnemonicParsing="false" onAction="#subirRecibo" text="FOTO RECIBO" />
+                        <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="469.0" prefHeight="58.0" prefWidth="156.0">
+                           <children>
+                              <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirGasto" text="Añadir">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="bCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Text layoutX="148.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
+                     </children>
+                  </Pane>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

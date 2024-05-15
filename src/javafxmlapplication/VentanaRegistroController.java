@@ -26,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -44,11 +45,11 @@ public class VentanaRegistroController implements Initializable {
     @FXML
     private TextField cajaUser;
     @FXML
-    private Label errorUser;
+    private Text errorUser;
     @FXML
     private TextField cajaCorreo;
     @FXML
-    private Label errorCorreo;
+    private Text errorCorreo;
     @FXML
     private PasswordField cajaPassword;
     @FXML
@@ -60,12 +61,11 @@ public class VentanaRegistroController implements Initializable {
     @FXML
     private Button bFoto;
     @FXML
-    private Text cajaApellido;
+    private TextField cajaApellido;
     @FXML
-    private Label errorPassword;
+    private Text errorPassword;
     @FXML
-    private Label errorRepetir;
-    @FXML
+    private Text errorRepetir;
     private Text nombreImagen;
     
     public Image fotoPerfil = null;
@@ -228,20 +228,30 @@ public class VentanaRegistroController implements Initializable {
 
     @FXML
     private void subirFoto(ActionEvent event) {
-        
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Seleccionar Imagen");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Seleccionar Imagen");
+    fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+    );
 
-        File file = fileChooser.showOpenDialog(bFoto.getScene().getWindow());
-        if (file != null) {
-            fotoPerfil = new Image(file.toURI().toString());
+    File file = fileChooser.showOpenDialog(bFoto.getScene().getWindow());
+    if (file != null) {
+        try {
+            Image fotoPerfil = new Image(file.toURI().toString());
+            // Verificar si la imagen se cargó correctamente
+            if (fotoPerfil.isError()) {
+                throw new IOException("No se pudo cargar la imagen");
+            }
             nombreImagen.setText(file.getName());
             nombreImagen.setVisible(true);
+            // Usa 'this.fotoPerfil' si 'fotoPerfil' es una variable de clase
+            // this.fotoPerfil = fotoPerfil;
+        } catch (IOException e) {
+            // Manejar la excepción, por ejemplo, mostrar un mensaje de error
+            System.err.println("Error al cargar la imagen: " + e.getMessage());
         }
     }
+}
     
    
     

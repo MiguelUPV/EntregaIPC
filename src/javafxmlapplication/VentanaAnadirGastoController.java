@@ -15,6 +15,8 @@ import java.util.function.UnaryOperator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.css.converter.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,23 +97,41 @@ public class VentanaAnadirGastoController implements Initializable {
     TextFormatter<String> textFormatter = new TextFormatter<>(filter);
     ((TextField) cajaFecha.getEditor()).setTextFormatter(textFormatter);
         
+    choiceCateg.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
+        if (isNowShowing) {
+            try {
+                populateCategories();
+            } catch (AcountDAOException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+    });
+    
+    try {
         populateCategories();
+    } catch (AcountDAOException | IOException e) {
+        e.printStackTrace();
+    }
         
         
     }   
     
-    private void populateCategories() {
-    Acount acount;
-    try {
-        acount = Acount.getInstance();
-        List<Category> userCategories = acount.getUserCategories();
-        if (userCategories != null) {
-            choiceCateg.getItems().setAll(userCategories);
-        }
-    } catch (AcountDAOException | IOException ex) {
-        Logger.getLogger(VentanaAnadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
+    private void populateCategories() throws AcountDAOException, IOException{
+        List<Category> categorias = Acount.getInstance().getUserCategories();
+        ObservableList<model.Category> listaCategorias = FXCollections.observableArrayList(categorias);
+        choiceCateg.setItems(listaCategorias);
+        choiceCateg.setConverter(new javafx.util.StringConverter<Category>() {
+            @Override
+            public String toString(Category category) {
+                return category != null ? category.getName(): "";
+            }
+
+            @Override
+            public Category fromString(String string) {
+                return null;
+            }
+        });
     }
-}
 
     
     private void checkFields() {
@@ -201,7 +221,7 @@ public class VentanaAnadirGastoController implements Initializable {
         stage.showAndWait();
     }
 
-    private void desplegarCateg(MouseDragEvent event) {
+    private void desplegarCateg(MouseDragEvent event) throws AcountDAOException, IOException{
         populateCategories();
     }
     

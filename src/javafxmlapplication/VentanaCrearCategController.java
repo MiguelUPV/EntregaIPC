@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
+import model.Category;
 
 /**
  * FXML Controller class
@@ -38,7 +39,7 @@ public class VentanaCrearCategController implements Initializable {
     @FXML
     private Label erroNombre;
     
-    private Consumer<String> categoryAddedCallback;
+    private Consumer<Category> categoryAddedCallback;
 
     /**
      * Initializes the controller class.
@@ -54,7 +55,7 @@ public class VentanaCrearCategController implements Initializable {
         });
     }
     
-    public void setCategoryAddedCallback(Consumer<String> callback) {
+    public void setCategoryAddedCallback(Consumer<Category> callback) {
         this.categoryAddedCallback = callback;
     }
 
@@ -65,26 +66,26 @@ public class VentanaCrearCategController implements Initializable {
     }   
 
     @FXML
-    private void anadirCategoria(ActionEvent event) throws AcountDAOException, IOException{
-        String nombre = cajaNombre.getText().trim();
-        String descripcion = cajaDesc.getText().trim();
+    private void anadirCategoria(ActionEvent event) throws AcountDAOException, IOException {
+        String nombre = cajaNombre.getText();
+        String descripcion = cajaDesc.getText();
+        
         Acount acount = Acount.getInstance();
-        // Intentar registrar la categoría
-        boolean success = acount.registerCategory(nombre, descripcion);
+        boolean registrado = acount.registerCategory(nombre, descripcion);
 
-        if (success) {
-            if (categoryAddedCallback != null) {
-                categoryAddedCallback.accept(nombre);
-            }
+        if (registrado) {
+            // Cerrar la ventana emergente si se registra correctamente
             Stage stage = (Stage) bAnadir.getScene().getWindow();
-            stage.close();
+            stage.close(); 
         } else {
-            // Mostrar el error y vaciar la cajaNombre
+            // Mostrar mensaje de error y vaciar campos si no se registra correctamente
             erroNombre.setVisible(true);
             cajaNombre.clear();
             cajaDesc.clear();
         }
-    }
+    
+    
+}
 
     @FXML
     private void cancelar(ActionEvent event) {

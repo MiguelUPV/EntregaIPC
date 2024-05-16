@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,8 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="345.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="javafxmlapplication.VentanaAnadirGastoController">
+<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaAnadirGastoController">
    <children>
       <BorderPane layoutX="73.0" layoutY="19.0" prefHeight="527.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -31,16 +31,16 @@
                         <Text layoutX="33.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
                         <TextField fx:id="cajaNombre" layoutX="34.0" layoutY="124.0" />
                         <Text layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria" />
-                        <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" onMouseEntered="#elegirCategoria" prefWidth="150.0" />
+                        <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" prefWidth="150.0" />
                         <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" text="+" />
                         <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe" />
                         <TextField fx:id="cajaCantidad" layoutX="33.0" layoutY="251.0" prefHeight="25.0" prefWidth="107.0" />
                         <Text layoutX="177.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" />
-                        <DatePicker fx:id="cajaFecha" layoutX="177.0" layoutY="251.0" prefHeight="25.0" prefWidth="136.0" />
+                        <DatePicker fx:id="cajaFecha" layoutX="177.0" layoutY="251.0" prefHeight="25.0" prefWidth="136.0" promptText="dd/mm/aaaa" />
                         <Text layoutX="34.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción (opcional)" />
                         <TextArea fx:id="cajaDesc" layoutX="33.0" layoutY="321.0" prefHeight="62.0" prefWidth="281.0" />
-                        <Text layoutX="33.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subir foto" />
-                        <Button fx:id="bSubirFoto" layoutX="33.0" layoutY="434.0" mnemonicParsing="false" onAction="#subirRecibo" text="FOTO RECIBO" />
+                        <Text layoutX="33.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjuntar factura" />
+                        <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="425.0" mnemonicParsing="false" onAction="#subirRecibo" text="FOTO RECIBO" />
                         <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="469.0" prefHeight="58.0" prefWidth="156.0">
                            <children>
                               <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirGasto" text="Añadir">
@@ -56,6 +56,7 @@
                            </children>
                         </HBox>
                         <Text layoutX="148.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
+                        <Label fx:id="nombreArchivo" layoutX="134.0" layoutY="429.0" maxWidth="182.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
                      </children>
                   </Pane>
                </children>

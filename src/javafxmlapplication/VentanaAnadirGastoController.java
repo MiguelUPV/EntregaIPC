@@ -4,13 +4,18 @@
  */
 package javafxmlapplication;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.UnaryOperator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.css.converter.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,15 +26,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.converter.DateTimeStringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
+
 
 /**
  * FXML Controller class
@@ -41,7 +53,7 @@ public class VentanaAnadirGastoController implements Initializable {
     @FXML
     private TextField cajaNombre;
     @FXML
-    private ChoiceBox<String> choiceCateg;
+    private ChoiceBox<Category> choiceCateg;
     @FXML
     private TextField cajaCantidad;
     @FXML
@@ -56,6 +68,9 @@ public class VentanaAnadirGastoController implements Initializable {
     private Button bCancelar;
     @FXML
     private Button bCrearCateg;
+    @FXML
+    private Label nombreArchivo;
+    private Image recibo = null;
 
     /**
      * Initializes the controller class.
@@ -70,24 +85,33 @@ public class VentanaAnadirGastoController implements Initializable {
         cajaFecha.valueProperty().addListener((observable, oldValue, newValue) -> checkFields());
         choiceCateg.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkFields());
         
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+        String newText = change.getControlNewText();
+        if (newText.matches("[0-9/]*") && newText.length() <= 10) { // Solo permite números y "/" y máximo 10 caracteres
+            return change;
+        }
+        return null; // Rechazar el cambio si contiene caracteres no permitidos o excede la longitud máxima
+    };
+    TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+    ((TextField) cajaFecha.getEditor()).setTextFormatter(textFormatter);
+        
         populateCategories();
         
         
     }   
     
     private void populateCategories() {
-        Acount acount;
-        try {
-            acount = Acount.getInstance();
-            List<Category> userCategories = acount.getUserCategories();
-            if (userCategories != null) {
-                List<String> categoryNames = userCategories.stream().map(Category::getName).collect(Collectors.toList());
-                choiceCateg.getItems().setAll(categoryNames);
-            }
-        } catch (AcountDAOException | IOException ex) {
-            Logger.getLogger(VentanaAnadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
+    Acount acount;
+    try {
+        acount = Acount.getInstance();
+        List<Category> userCategories = acount.getUserCategories();
+        if (userCategories != null) {
+            choiceCateg.getItems().setAll(userCategories);
         }
+    } catch (AcountDAOException | IOException ex) {
+        Logger.getLogger(VentanaAnadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     
     private void checkFields() {
@@ -101,11 +125,51 @@ public class VentanaAnadirGastoController implements Initializable {
 
     @FXML
     private void subirRecibo(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Seleccionar imagen");
+    fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Archivos de imagen", "*.png", "*.jpg", "*.gif"),
+        new FileChooser.ExtensionFilter("Todos los archivos", "*.*")
+    );
+    File selectedFile = fileChooser.showOpenDialog(new Stage());
+    if (selectedFile != null) {
+        // Guardar la imagen seleccionada en la variable recibo
+        recibo = new Image(selectedFile.toURI().toString());
+        
+        // Mostrar el nombre del archivo en el Label nombreArchivo
+        nombreArchivo.setText(selectedFile.getName());
+        nombreArchivo.setVisible(true);
     }
+}
 
     @FXML
     private void anadirGasto(ActionEvent event) {
+    // Obtener los valores de los campos de entrada
+    String nombre = cajaNombre.getText();
+    Category categoria = choiceCateg.getValue();
+    
+    double cantidad = Double.parseDouble(cajaCantidad.getText());
+    LocalDate fecha = cajaFecha.getValue();
+    String descripcion = cajaDesc.getText();
+    
+    // Intentar registrar el cargo/gasto
+    try {
+        Acount acount = Acount.getInstance();
+        // Utilizar el método registerCharge de la clase Acount
+        boolean registrado = acount.registerCharge(nombre, descripcion, cantidad, 1, recibo, fecha, categoria);
+        
+        if (registrado) {
+            // Si se registra correctamente, cerrar la ventana actual
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        } else {
+            // Si no se registra correctamente, borrar el texto en cajaNombre
+            cajaNombre.clear();
+        }
+    } catch (AcountDAOException | IOException ex) {
+        Logger.getLogger(VentanaAnadirGastoController.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     @FXML
     private void cancelar(ActionEvent event) {
@@ -120,9 +184,9 @@ public class VentanaAnadirGastoController implements Initializable {
 
         
         VentanaCrearCategController crearCategController = fxmlLoader.getController();
-        crearCategController.setCategoryAddedCallback(categoryName -> {
-            choiceCateg.getItems().add(categoryName);
-            choiceCateg.getSelectionModel().select(categoryName);
+        crearCategController.setCategoryAddedCallback(category -> {
+            choiceCateg.getItems().add(category);
+            choiceCateg.getSelectionModel().select(category);
         });
         
             // Crear una nueva ventana (stage) para la ventana emergente
@@ -130,6 +194,8 @@ public class VentanaAnadirGastoController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL); // Bloquear la ventana principal mientras la ventana emergente está abierta
         stage.setTitle("Crear Categoría");
         stage.setScene(new Scene(root));
+        
+        stage.setResizable(false);
 
             // Mostrar la ventana emergente y esperar a que se cierre antes de continuar
         stage.showAndWait();
@@ -138,9 +204,8 @@ public class VentanaAnadirGastoController implements Initializable {
     private void desplegarCateg(MouseDragEvent event) {
         populateCategories();
     }
+    
+    
 
-    @FXML
-    private void elegirCategoria(MouseEvent event) {
-    }
     
 }

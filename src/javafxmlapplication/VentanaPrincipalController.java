@@ -23,6 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
+import model.Category;
 
 /**
  * FXML Controller class
@@ -100,6 +101,7 @@ public class VentanaPrincipalController implements Initializable {
             stage.setTitle("Añadir Gasto");
             stage.initModality(Modality.APPLICATION_MODAL); // Block events to other windows
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.showAndWait();
     }
     

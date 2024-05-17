@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -49,13 +53,24 @@ public class VentanaPrincipalController implements Initializable {
     private Button boton_AjustesDeCuenta;
     @FXML
     private Button boton_CerrarSesion;
+    @FXML
+    private BorderPane borderPane;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+       
+        FXMLLoader inicioLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaInicio.fxml"));
+        try {
+            Parent inicio;
+            inicio = inicioLoader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
         try {
             nombreUsuario1 = Acount.getInstance().getLoggedUser().getName();
         } catch (AcountDAOException e) {

@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -107,6 +108,18 @@ public class VentanaAnadirGastoController implements Initializable {
         }
     });
     
+    
+    
+    UnaryOperator<TextFormatter.Change> filterr = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*\\.?\\d*")) {
+                return change;
+            }
+            return null;
+        };
+        TextFormatter<String> textFormater = new TextFormatter<>(filterr);
+        cajaCantidad.setTextFormatter(textFormater);
+    
     try {
         populateCategories();
     } catch (AcountDAOException | IOException e) {
@@ -179,6 +192,10 @@ public class VentanaAnadirGastoController implements Initializable {
         boolean registrado = acount.registerCharge(nombre, descripcion, cantidad, 1, recibo, fecha, categoria);
         
         if (registrado) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto añadido correctamente correctamente");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+                
             // Si se registra correctamente, cerrar la ventana actual
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();

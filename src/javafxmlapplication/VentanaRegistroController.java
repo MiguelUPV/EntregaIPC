@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -167,7 +168,12 @@ public class VentanaRegistroController implements Initializable {
                             errorRepetir.setVisible(false);
                             
                             if (acount.registerUser(name, apellido, correo, user, password, fotoPerfil, fechaActual)) {
-                
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setHeaderText("USuario creado correctamente");
+                                alert.setContentText("Inicie sesión para acceder a la aplicación");
+                                alert.showAndWait();
+                                
+                                
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
                                 Parent root = loader.load();
                                 Stage stage = (Stage) bRegist.getScene().getWindow();

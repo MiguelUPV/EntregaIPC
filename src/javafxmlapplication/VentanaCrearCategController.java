@@ -6,13 +6,17 @@ package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -75,6 +79,10 @@ public class VentanaCrearCategController implements Initializable {
 
         if (registrado) {
             // Cerrar la ventana emergente si se registra correctamente
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Categoría creada correctamente");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            
             Stage stage = (Stage) bAnadir.getScene().getWindow();
             stage.close(); 
         } else {

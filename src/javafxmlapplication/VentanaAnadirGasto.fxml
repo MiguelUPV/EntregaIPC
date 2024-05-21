@@ -15,13 +15,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="527.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaAnadirGastoController">
+<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaAnadirGastoController">
    <children>
       <BorderPane layoutX="73.0" layoutY="19.0" prefHeight="527.0" prefWidth="345.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
+                  <Pane prefHeight="560.0" prefWidth="346.0">
                      <children>
                         <Text fill="#2428a9" layoutX="57.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Añadir Gasto" wrappingWidth="231.7366828918457">
                            <font>
@@ -34,14 +34,14 @@
                         <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" prefWidth="150.0" />
                         <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" text="+" />
                         <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe" />
-                        <TextField fx:id="cajaCantidad" layoutX="33.0" layoutY="251.0" prefHeight="25.0" prefWidth="107.0" />
-                        <Text layoutX="177.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" />
-                        <DatePicker fx:id="cajaFecha" layoutX="177.0" layoutY="251.0" prefHeight="25.0" prefWidth="136.0" promptText="dd/mm/aaaa" />
-                        <Text layoutX="34.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción (opcional)" />
-                        <TextArea fx:id="cajaDesc" layoutX="33.0" layoutY="321.0" prefHeight="62.0" prefWidth="281.0" />
-                        <Text layoutX="33.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjuntar factura" />
-                        <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="425.0" mnemonicParsing="false" onAction="#subirRecibo" text="FOTO RECIBO" />
-                        <HBox alignment="BOTTOM_RIGHT" layoutX="189.0" layoutY="469.0" prefHeight="58.0" prefWidth="156.0">
+                        <TextField fx:id="cajaCantidad" layoutX="33.0" layoutY="251.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Text layoutX="222.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades" />
+                        <DatePicker fx:id="cajaFecha" layoutX="32.0" layoutY="321.0" prefHeight="25.0" prefWidth="150.0" promptText="dd/mm/aaaa" />
+                        <Text layoutX="34.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción (opcional)" />
+                        <TextArea fx:id="cajaDesc" layoutX="32.0" layoutY="391.0" prefHeight="62.0" prefWidth="281.0" />
+                        <Text layoutX="32.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjuntar factura" />
+                        <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="493.0" mnemonicParsing="false" onAction="#subirRecibo" text="FOTO RECIBO" />
+                        <HBox alignment="BOTTOM_RIGHT" layoutX="190.0" layoutY="506.0" prefHeight="58.0" prefWidth="156.0">
                            <children>
                               <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirGasto" text="Añadir">
                                  <HBox.margin>
@@ -55,8 +55,10 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Text layoutX="148.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
+                        <Text layoutX="187.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
                         <Label fx:id="nombreArchivo" layoutX="134.0" layoutY="429.0" maxWidth="182.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
+                        <TextField fx:id="cajaUnidades" layoutX="222.0" layoutY="251.0" prefHeight="25.0" prefWidth="92.0" />
+                        <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" />
                      </children>
                   </Pane>
                </children>

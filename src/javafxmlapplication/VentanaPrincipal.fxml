@@ -5,76 +5,77 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
+   <center>
+      <VBox fillWidth="false" prefHeight="289.0" prefWidth="377.0" BorderPane.alignment="CENTER" />
+   </center>
    <top>
-      <Pane prefHeight="77.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutX="1.0" layoutY="2.0" prefHeight="70.0" prefWidth="601.0">
+            <HBox prefHeight="100.0" prefWidth="754.0">
                <children>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="55.0" prefWidth="294.0">
+                  <HBox alignment="BOTTOM_RIGHT" fillHeight="false">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido de nuevo, " />
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_LEFT" prefHeight="75.0" prefWidth="90.0">
+                  <HBox alignment="BOTTOM_LEFT" fillHeight="false">
                      <children>
                         <Text fx:id="nombreUsuario" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
                      </children>
                   </HBox>
-                  <HBox alignment="BOTTOM_RIGHT">
+                  <VBox fillWidth="false" prefHeight="100.0" prefWidth="974.0" HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <HBox alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="103.0">
-                           <children>
-                              <Text fx:id="NickName" strokeType="OUTSIDE" strokeWidth="0.0" text="NickName" />
-                           </children>
-                        </HBox>
+                        <Text fx:id="NickName" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" />
                      </children>
                   </HBox>
-                  <ImageView fitHeight="69.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
-      </Pane>
+      </VBox>
    </top>
    <left>
-      <VBox prefHeight="303.0" prefWidth="162.0" spacing="15.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-         </BorderPane.margin>
+      <VBox fillWidth="false" prefHeight="297.0" prefWidth="203.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="boton_Inicio" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="166.0" text="Inicio">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
+            <Button fx:id="boton_Inicio" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Inicio" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="boton_AñadirGasto" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#anadirGasto" prefHeight="38.0" prefWidth="166.0" text="Añadir Gasto">
+            <Button fx:id="boton_AñadirGasto" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Añadir Gasto" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="boton_Historial" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="166.0" text="Historial ">
+            <Button fx:id="boton_Historial" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Historial" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="boton_AjustesDeCuenta" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="166.0" text="Ajustes de cuenta">
+            <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES" />
+            <Button fx:id="boton_AjustesDeCuenta" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Ajustes de cuenta" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
-            <Button fx:id="boton_CerrarSesion" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="38.0" prefWidth="166.0" text="Cerrar sesión">
+            <Button fx:id="boton_CerrarSesion" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Cerrar sesión" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
             </Button>
          </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" top="30.0" />
+         </padding>
       </VBox>
    </left>
 </BorderPane>

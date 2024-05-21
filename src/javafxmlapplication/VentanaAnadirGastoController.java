@@ -74,6 +74,8 @@ public class VentanaAnadirGastoController implements Initializable {
     @FXML
     private Label nombreArchivo;
     private Image recibo = null;
+    @FXML
+    private TextField cajaUnidades;
 
     /**
      * Initializes the controller class.
@@ -184,12 +186,13 @@ public class VentanaAnadirGastoController implements Initializable {
     double cantidad = Double.parseDouble(cajaCantidad.getText());
     LocalDate fecha = cajaFecha.getValue();
     String descripcion = cajaDesc.getText();
+    int unidades = Integer.parseInt(cajaUnidades.getText());
     
     // Intentar registrar el cargo/gasto
     try {
         Acount acount = Acount.getInstance();
         // Utilizar el método registerCharge de la clase Acount
-        boolean registrado = acount.registerCharge(nombre, descripcion, cantidad, 1, recibo, fecha, categoria);
+        boolean registrado = acount.registerCharge(nombre, descripcion, cantidad, unidades, recibo, fecha, categoria);
         
         if (registrado) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto añadido correctamente correctamente");

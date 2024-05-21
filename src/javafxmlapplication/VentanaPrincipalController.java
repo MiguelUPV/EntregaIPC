@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -86,14 +87,38 @@ public class VentanaPrincipalController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-         boton_CerrarSesion.setOnAction(actionEvent -> cerrar_sesión());
+         boton_CerrarSesion.setOnAction(actionEvent -> {
+            try {
+                cerrar_sesión();
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+         
+        boton_Historial.setOnAction(actionEvent -> {
+             abrir_historial();
+        }); 
+        
+        boton_AñadirGasto.setOnAction(actionEvent -> {
+            try {
+                anadirGasto();
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }); 
+        
+        boton_Inicio.setOnAction(actionEvent -> {
+            abrirInicio();
+        });
+         
+         
         nombreUsuario.setText(nombreUsuario1);
         NickName.setText(nombreNickName1);
         
         
     }    
 
-    private void cerrar_sesión() {
+    private void cerrar_sesión() throws IOException {
        Alert alert = new Alert(AlertType.CONFIRMATION);
        alert.setTitle("Cerrar sesión");
        alert.setHeaderText("¿Está a punto de cerrar la sesión?");
@@ -101,13 +126,19 @@ public class VentanaPrincipalController implements Initializable {
        Optional<ButtonType> result = alert.showAndWait();
        if (result.isPresent() && result.get() == ButtonType.OK){
        System.out.println("OK");
+       FXMLLoader inicio = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = inicio.load();
+        Stage stage = (Stage) boton_CerrarSesion.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         } else {
         System.out.println("CANCELAR");
+        
 }
     }
 
-    @FXML
-    private void anadirGasto(ActionEvent event) throws IOException{
+    private void anadirGasto() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaAnadirGasto.fxml"));
             Parent root = loader.load();
             
@@ -118,6 +149,28 @@ public class VentanaPrincipalController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.showAndWait();
+    }
+
+    private void abrir_historial() {
+       FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaHistorial.fxml"));
+        try {
+            Parent inicio;
+            inicio = historialLoader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void abrirInicio() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaInicio.fxml"));
+        try {
+            Parent inicio;
+            inicio = loader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

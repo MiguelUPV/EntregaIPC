@@ -39,16 +39,18 @@
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="cajaUser" layoutX="105.0" layoutY="161.0" prefHeight="44.0" prefWidth="247.0" promptText="Usuario" />
-                        <PasswordField fx:id="cajaPassword" layoutX="105.0" layoutY="254.0" onKeyPressed="#accionarBotonIniciarConEnter" onKeyTyped="#accionarBotonIniciarConEnter" prefHeight="44.0" prefWidth="247.0" promptText="Contraseña" />
-                        <Button fx:id="bIniciar" layoutX="168.0" layoutY="345.0" mnemonicParsing="false" onAction="#IniciarSesion" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE" />
+                        <PasswordField fx:id="cajaPassword" layoutX="105.0" layoutY="280.0" onKeyPressed="#accionarBotonIniciarConEnter" onKeyTyped="#accionarBotonIniciarConEnter" prefHeight="44.0" prefWidth="247.0" promptText="Contraseña" />
+                        <Button fx:id="bIniciar" layoutX="168.0" layoutY="364.0" mnemonicParsing="false" onAction="#IniciarSesion" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE" />
                         <Text fill="#121999" layoutX="100.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INICIO DE SESIÓN">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="36.0" />
                            </font>
                         </Text>
-                        <Text layoutX="144.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No tienes cuenta?" />
-                        <Hyperlink fx:id="linkReg" layoutX="239.0" layoutY="397.0" onAction="#ventanaReg" text="Regístrate" />
+                        <Text layoutX="143.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No tienes cuenta?" />
+                        <Hyperlink fx:id="linkReg" layoutX="238.0" layoutY="408.0" onAction="#ventanaReg" text="Regístrate" />
                         <Text fx:id="textError" fill="RED" layoutX="105.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El usuario o contraseña son incorrectos" visible="false" wrappingWidth="212.4417724609375" />
+                        <Text layoutX="105.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="76.53668212890625" />
+                        <Text layoutX="105.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña" wrappingWidth="76.53668212890625" />
                      </children>
                   </Pane>
                </children>

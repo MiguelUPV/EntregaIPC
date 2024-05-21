@@ -169,7 +169,7 @@ public class VentanaRegistroController implements Initializable {
                             
                             if (acount.registerUser(name, apellido, correo, user, password, fotoPerfil, fechaActual)) {
                                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                                alert.setHeaderText("USuario creado correctamente");
+                                alert.setHeaderText("Usuario creado correctamente");
                                 alert.setContentText("Inicie sesión para acceder a la aplicación");
                                 alert.showAndWait();
                                 

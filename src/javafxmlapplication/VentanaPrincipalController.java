@@ -30,6 +30,8 @@ import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 
+
+
 /**
  * FXML Controller class
  *
@@ -56,6 +58,8 @@ public class VentanaPrincipalController implements Initializable {
     private Button boton_CerrarSesion;
     @FXML
     private BorderPane borderPane;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -71,6 +75,8 @@ public class VentanaPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
       
         try {
             nombreUsuario1 = Acount.getInstance().getLoggedUser().getName();
@@ -142,12 +148,16 @@ public class VentanaPrincipalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaAnadirGasto.fxml"));
             Parent root = loader.load();
             
+                  
             // Create a new stage for the popup window
             Stage stage = new Stage();
             stage.setTitle("Añadir Gasto");
             stage.initModality(Modality.APPLICATION_MODAL); // Block events to other windows
             stage.setScene(new Scene(root));
             stage.setResizable(false);
+            
+            
+            
             stage.showAndWait();
     }
 
@@ -157,6 +167,7 @@ public class VentanaPrincipalController implements Initializable {
             Parent inicio;
             inicio = historialLoader.load();
             borderPane.setCenter(inicio);
+            
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }

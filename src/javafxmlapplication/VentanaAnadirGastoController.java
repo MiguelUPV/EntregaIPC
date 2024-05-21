@@ -76,7 +76,8 @@ public class VentanaAnadirGastoController implements Initializable {
     private Image recibo = null;
     @FXML
     private TextField cajaUnidades;
-
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -198,6 +199,8 @@ public class VentanaAnadirGastoController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto añadido correctamente correctamente");
             alert.setHeaderText(null);
             alert.showAndWait();
+            
+            
                 
             // Si se registra correctamente, cerrar la ventana actual
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -245,7 +248,15 @@ public class VentanaAnadirGastoController implements Initializable {
         populateCategories();
     }
     
+}
+    
+    
+    
+    
+    
+    
+    
     
 
     
-}
+

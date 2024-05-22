@@ -116,6 +116,10 @@ public class VentanaPrincipalController implements Initializable {
         boton_Inicio.setOnAction(actionEvent -> {
             abrirInicio();
         });
+        
+        boton_AjustesDeCuenta.setOnAction((actionEvent) -> {
+            abrirAjustesDeCuenta();
+        });
          
          
         nombreUsuario.setText(nombreUsuario1);
@@ -175,6 +179,17 @@ public class VentanaPrincipalController implements Initializable {
     
     private void abrirInicio() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaInicio.fxml"));
+        try {
+            Parent inicio;
+            inicio = loader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void abrirAjustesDeCuenta() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaEditarUser.fxml"));
         try {
             Parent inicio;
             inicio = loader.load();

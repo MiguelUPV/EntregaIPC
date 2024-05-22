@@ -8,9 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
    <center>
-      <VBox fillWidth="false" prefHeight="289.0" prefWidth="377.0" BorderPane.alignment="CENTER" />
+      <VBox fillWidth="false" prefHeight="445.0" prefWidth="486.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="15.0" />
+         </BorderPane.margin></VBox>
    </center>
    <top>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -44,7 +47,7 @@
       </VBox>
    </top>
    <left>
-      <VBox fillWidth="false" prefHeight="297.0" prefWidth="203.0" spacing="30.0" BorderPane.alignment="CENTER">
+      <VBox fillWidth="false" prefHeight="449.0" prefWidth="212.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="boton_Inicio" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Inicio" VBox.vgrow="SOMETIMES">
                <graphic>

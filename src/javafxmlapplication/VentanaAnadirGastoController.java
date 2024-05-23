@@ -205,6 +205,8 @@ public class VentanaAnadirGastoController implements Initializable {
             // Si se registra correctamente, cerrar la ventana actual
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
+            
+            
         } else {
             // Si no se registra correctamente, borrar el texto en cajaNombre
             cajaNombre.clear();

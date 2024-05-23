@@ -15,6 +15,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +31,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -69,6 +72,8 @@ public class VentanaHistorialController implements Initializable {
     private TableColumn<Charge, String> colFecha;
     @FXML
     private Button modificar_Elemento1;
+    @FXML
+    private TextField buscador;
     
    
 
@@ -79,6 +84,13 @@ public class VentanaHistorialController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         refreshTable();
+        
+        buscador.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                filterTable(newValue);
+            }
+        });
 
 
         // Set up the cell factory for the category column
@@ -103,15 +115,6 @@ public class VentanaHistorialController implements Initializable {
         colUnidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
         
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            public void run() {
-        // Código para actualizar la TableView aquí
-                refreshTable();
-            }
-        };
-// Actualizar cada 5 segundos (5000 milisegundos)
-        timer.schedule(task, 0, 2000);
     }
     
     public void refreshTable() {
@@ -150,6 +153,7 @@ public class VentanaHistorialController implements Initializable {
         
           // Mostrar la ventana emergente y esperar a que se cierre antes de continuar
         stage.showAndWait();
+        
         }
       
         
@@ -165,6 +169,7 @@ public class VentanaHistorialController implements Initializable {
         alert.setHeaderText("No se ha seleccionado ningún elemento");
         alert.setContentText("Por favor, seleccione un elemento de la tabla.");
         alert.showAndWait();
+       
         } else {
             Charge selectedCharge = tableView.getSelectionModel().getSelectedItem();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -173,6 +178,7 @@ public class VentanaHistorialController implements Initializable {
             alert.setContentText("Nombre: " + selectedCharge.getName() + "\nCategoría: " + selectedCharge.getCategory().getName());
 
             Optional<ButtonType> result = alert.showAndWait();
+           
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 Acount cuenta;
                 try {
@@ -183,6 +189,7 @@ public class VentanaHistorialController implements Initializable {
                          alertaConf.setTitle("Categoria eliminada");
                          alertaConf.setHeaderText("El gasto ha sido eliminado correctamente");
                          alertaConf.showAndWait();
+                         refreshTable();
                      }
                 } catch (IOException ex) {
                     Logger.getLogger(VentanaHistorialController.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,9 +205,21 @@ public class VentanaHistorialController implements Initializable {
     private void imprimir_PDF(ActionEvent event) {
     }
     
+    private void filterTable(String searchText) {
+    if (searchText == null || searchText.trim().isEmpty()) {
+        
+        tableView.setItems(obsLista);
+    } else {
+        
+        ObservableList<Charge> filteredList = FXCollections.observableArrayList();
+        String searchTextLower = searchText.toLowerCase();
+        for (Charge charge : obsLista) {
+            if (charge.getName().toLowerCase().contains(searchTextLower)) {
+                filteredList.add(charge);
+            }
+        }
+        tableView.setItems(filteredList);
+    }
     
-    
-    
-    
-    
+    }
 }

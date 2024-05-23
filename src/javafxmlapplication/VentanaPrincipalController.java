@@ -148,22 +148,31 @@ public class VentanaPrincipalController implements Initializable {
 }
     }
 
-    private void anadirGasto() throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaAnadirGasto.fxml"));
-            Parent root = loader.load();
-            
-                  
-            // Create a new stage for the popup window
-            Stage stage = new Stage();
-            stage.setTitle("Añadir Gasto");
-            stage.initModality(Modality.APPLICATION_MODAL); // Block events to other windows
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-            
-            
-            
-            stage.showAndWait();
-    }
+   private void anadirGasto() throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaAnadirGasto.fxml"));
+    Parent root = loader.load();
+
+    // Create a new stage for the popup window
+    Stage stage = new Stage();
+    stage.setTitle("Añadir Gasto");
+    stage.initModality(Modality.APPLICATION_MODAL); // Block events to other windows
+    stage.setScene(new Scene(root));
+    stage.setResizable(false);
+
+    // Set event handler for when the window is closed
+    stage.setOnHidden(a -> {
+        FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaHistorial.fxml"));
+        try {
+            Parent inicio = historialLoader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+
+    // Show the window and wait for it to be closed
+    stage.showAndWait();
+}
 
     private void abrir_historial() {
        FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaHistorial.fxml"));

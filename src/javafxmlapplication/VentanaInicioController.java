@@ -1,83 +1,174 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package javafxmlapplication;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
 
-
-/**
- * FXML Controller class
- *
- * @author 34744
- */
 public class VentanaInicioController implements Initializable {
 
     @FXML
     private PieChart pieChart;
-     ObservableList<Charge> obsLista = null;
-    
+    ObservableList<Charge> obsLista = null;
+    @FXML
+    private ChoiceBox<String> choiceBox;
+    @FXML
+    private Text textoGasto;
+    @FXML
+    private Text textoCantGastada;
+    @FXML
+    private TableView<Charge> tableView;
+    @FXML
+    private TableColumn<Charge, String> colNombre;
+    @FXML
+    private TableColumn<Charge, Category> colCateg;
+    @FXML
+    private TableColumn<Charge, Double> colCant;
+    @FXML
+    private TableColumn<Charge, Integer> colUnidades;
+    @FXML
+    private TableColumn<Charge, String> colFecha;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            // Obtén la instancia de Acount
+            ObservableList<String> options = FXCollections.observableArrayList(
+                "Total",
+                "Ultimo año",
+                "Ultimo mes",
+                "Ultima semana"
+            );
+            choiceBox.setItems(options);
+            choiceBox.setValue("Total");
+
             Acount acount = Acount.getInstance();
-            
-            // Obtén la lista de cargos del usuario
             List<Charge> miscargos = acount.getUserCharges();
             
-            // Mapa para almacenar el total de cada categoría
-            Map<Category, Double> categoriaTotales = new HashMap<>();
+            colCateg.setCellFactory(column -> {
+                return new TableCell<Charge, Category>() {
+                    @Override
+                    protected void updateItem(Category category, boolean empty) {
+                        super.updateItem(category, empty);
+                        if (empty || category == null) {
+                            setText(null);
+                        } else {
+                            setText(category.getName());
+                        }
+                    }
+                };
+            });
             
-            // Recorre la lista de cargos y acumula los totales por categoría
-            for (Charge cargo : miscargos) {
-                Category categoria = cargo.getCategory();
-                double costo = cargo.getCost();
-                
-                // Suma el costo al total de la categoría
-                categoriaTotales.put(categoria, categoriaTotales.getOrDefault(categoria, 0.0) + costo);
-            }
+            colNombre.setCellValueFactory(new PropertyValueFactory<>("name"));
+            colCateg.setCellValueFactory(new PropertyValueFactory<>("category"));
+            colCant.setCellValueFactory(new PropertyValueFactory<>("cost"));
+            colUnidades.setCellValueFactory(new PropertyValueFactory<>("units"));
+            colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+            choiceBox.setOnAction(event -> actualizarVista(miscargos));
+
             
-            // Crea la lista de datos para el PieChart
-            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-            
-            // Recorre el mapa de totales y crea los datos del PieChart
-            for (Map.Entry<Category, Double> entry : categoriaTotales.entrySet()) {
-                Category categoria = entry.getKey();
-                Double total = entry.getValue();
-                
-                // Agrega el dato al PieChart
-                pieChartData.add(new PieChart.Data(categoria.getName(), total));
-            }
-            
-            // Asigna los datos al PieChart
-            pieChart.setData(pieChartData);
+            actualizarVista(miscargos);
             
         } catch (AcountDAOException | IOException ex) {
             Logger.getLogger(VentanaInicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }    
-    
+
+    private void actualizarVista(List<Charge> miscargos) {
+        String seleccion = choiceBox.getValue();
+        LocalDate ahora = LocalDate.now();
+        
+        List<Charge> cargosFiltrados = miscargos;
+
+        switch (seleccion) {
+            case "Ultima semana":
+                cargosFiltrados = miscargos.stream()
+                    .filter(c -> ChronoUnit.DAYS.between(c.getDate(), ahora) <= 7)
+                    .collect(Collectors.toList());
+                textoGasto.setText("Gasto últimos 7 dias");
+                break;
+            case "Ultimo mes":
+                cargosFiltrados = miscargos.stream()
+                    .filter(c -> ChronoUnit.DAYS.between(c.getDate(), ahora) <= 30)
+                    .collect(Collectors.toList());
+                textoGasto.setText("Gasto último mes");
+                break;
+            case "Ultimo año":
+                cargosFiltrados = miscargos.stream()
+                    .filter(c -> ChronoUnit.DAYS.between(c.getDate(), ahora) <= 365)
+                    .collect(Collectors.toList());
+                textoGasto.setText("Gasto último año");
+                break;
+            case "Total":
+            default:
+                
+                cargosFiltrados = miscargos;
+                textoGasto.setText("Gasto total");
+                break;
+        }
+
+        
+        ObservableList<Charge> cargosTabla = FXCollections.observableArrayList(cargosFiltrados);
+        tableView.setItems(cargosTabla);
+
+        
+        actualizarPieChart(cargosFiltrados);
+
+        
+        sumarGastosYMostrarTotal(cargosFiltrados);
+    }
+
+    private void actualizarPieChart(List<Charge> cargos) {
+        Map<Category, Double> categoriaTotales = new HashMap<>();
+        
+        for (Charge cargo : cargos) {
+            Category categoria = cargo.getCategory();
+            double costo = cargo.getCost();
+            
+            categoriaTotales.put(categoria, categoriaTotales.getOrDefault(categoria, 0.0) + costo);
+        }
+        
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        
+        for (Map.Entry<Category, Double> entry : categoriaTotales.entrySet()) {
+            Category categoria = entry.getKey();
+            Double total = entry.getValue();
+            pieChartData.add(new PieChart.Data(categoria.getName(), total));
+        }
+        
+        
+        
+        pieChart.setData(pieChartData);
+        
+    }
+
+    private void sumarGastosYMostrarTotal(List<Charge> miscargos) {
+        double totalGastos = 0.0;
+        for (Charge cargo : miscargos) {
+            totalGastos += cargo.getCost();
+        }
+        textoCantGastada.setText(String.valueOf(totalGastos)+ " €");
+    }
 }

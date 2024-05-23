@@ -24,14 +24,14 @@
             </TableView>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="160.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="201.0" prefWidth="184.0">
+                  <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="201.0" prefWidth="184.0" spacing="15.0">
                      <children>
-                        <Button fx:id="modificar_Elemento" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0" wrapText="true">
+                        <Button fx:id="modificar_Elemento" mnemonicParsing="false" onAction="#modificar_Gasto" prefHeight="46.0" prefWidth="139.0" text="Modificar gasto" wrapText="true">
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button fx:id="eliminar_Elemento" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0" wrapText="true">
+                        <Button fx:id="eliminar_Elemento" mnemonicParsing="false" onAction="#eliminar_Gasto" prefHeight="46.0" prefWidth="139.0" text="Eliminar gasto" wrapText="true">
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
@@ -41,9 +41,13 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="166.0">
+                  <VBox fx:id="imprimir_Historial" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="166.0">
                      <children>
-                        <Button fx:id="imprimir_Historial" mnemonicParsing="false" prefHeight="46.0" prefWidth="139.0" text="Imprimir en formato PDF" wrapText="true" />
+                        <Button fx:id="modificar_Elemento1" mnemonicParsing="false" onAction="#imprimir_PDF" prefHeight="61.0" prefWidth="134.0" text="Imprimir en formato PDF" wrapText="true">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Button>
                      </children>
                      <padding>
                         <Insets left="10.0" right="10.0" />

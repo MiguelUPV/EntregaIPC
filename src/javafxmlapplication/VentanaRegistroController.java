@@ -248,8 +248,8 @@ public class VentanaRegistroController implements Initializable {
             if (fotoPerfil.isError()) {
                 throw new IOException("No se pudo cargar la imagen");
             }
-            nombreImagen.setText(file.getName());
-            nombreImagen.setVisible(true);
+            //nombreImagen.setText(file.getName());
+            //nombreImagen.setVisible(true);
             // Usa 'this.fotoPerfil' si 'fotoPerfil' es una variable de clase
             // this.fotoPerfil = fotoPerfil;
         } catch (IOException e) {

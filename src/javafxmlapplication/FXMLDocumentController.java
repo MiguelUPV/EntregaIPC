@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,6 +29,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import model.Acount;
 import model.AcountDAOException;
 
@@ -103,6 +105,13 @@ public class FXMLDocumentController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = (Stage) bIniciar.getScene().getWindow();
             stage.setScene(scene);
+            
+            
+            
+            
+
+        // Establecer la posición de la nueva ventana
+                
             stage.show();
         } else {
             // Mostrar mensaje de error si el inicio de sesión falla

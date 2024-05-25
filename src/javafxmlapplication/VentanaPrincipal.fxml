@@ -31,7 +31,7 @@
             </Text>
             <Button fx:id="boton_Inicio" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-radius: 3px;" text="Inicio" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
                      <image>
                         <Image url="@../Resources/casa.png" />
                      </image>
@@ -41,20 +41,9 @@
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="boton_AñadirGasto" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Añadir Gasto" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_AñadirGasto" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Gasto" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
-                     <image>
-                        <Image url="@../Resources/suma.png" />
-                     </image></ImageView>
-               </graphic>
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="boton_AñadirGasto1" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Añadir Gasto" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
-               <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
                      <image>
                         <Image url="@../Resources/suma.png" />
                      </image>
@@ -64,9 +53,21 @@
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="boton_Historial" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Historial" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_AnadirCateg" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Categoría" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0">
+                     <image>
+                        <Image url="@../Resources/suma.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="boton_Historial" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Historial" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
                      <image>
                         <Image url="@../Resources/historial.png" />
                      </image>
@@ -77,9 +78,9 @@
                </font>
             </Button>
             <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES" />
-            <Button fx:id="boton_AjustesDeCuenta" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="170.0" style="-fx-background-color: white;" text="Ajustes de cuenta" textFill="NAVY" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_AjustesDeCuenta" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Perfil" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-35.0">
                      <image>
                         <Image url="@../Resources/perfil.png" />
                      </image></ImageView>
@@ -90,7 +91,7 @@
             </Button>
             <Button fx:id="boton_CerrarSesion" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Cerrar sesión" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                      <image>
                         <Image url="@../Resources/logout.png" />
                      </image></ImageView>

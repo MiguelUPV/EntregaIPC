@@ -52,6 +52,8 @@ public class VentanaPrincipalController implements Initializable {
     private Button boton_CerrarSesion;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Button boton_AnadirCateg;
     
     
     /**
@@ -100,6 +102,14 @@ public class VentanaPrincipalController implements Initializable {
         boton_AjustesDeCuenta.setOnAction((actionEvent) -> {
             abrirAjustesDeCuenta();
         });
+        
+        boton_AnadirCateg.setOnAction(((t) -> {
+            try {
+                anadirCateg();
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }));
          
          
        
@@ -186,6 +196,20 @@ public class VentanaPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void anadirCateg() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("VentanaCrearCateg.fxml"));
+        Parent root = loader.load();
+
+    // Create a new stage for the popup window
+        Stage stage = new Stage();
+        stage.setTitle("Añadir Gasto");
+        stage.initModality(Modality.APPLICATION_MODAL); // Block events to other windows
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+    
+        stage.showAndWait();
     }
     
 }

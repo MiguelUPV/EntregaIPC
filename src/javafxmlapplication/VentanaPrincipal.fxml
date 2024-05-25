@@ -2,78 +2,73 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="992.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaPrincipalController">
    <center>
-      <VBox fillWidth="false" prefHeight="445.0" prefWidth="486.0" BorderPane.alignment="CENTER">
+      <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="783.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="15.0" />
          </BorderPane.margin></VBox>
    </center>
-   <top>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="103.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="754.0">
-               <children>
-                  <HBox alignment="BOTTOM_RIGHT" fillHeight="false">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido de nuevo, " />
-                     </children>
-                  </HBox>
-                  <HBox alignment="BOTTOM_LEFT" fillHeight="false">
-                     <children>
-                        <Text fx:id="nombreUsuario" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" />
-                     </children>
-                  </HBox>
-                  <VBox fillWidth="false" prefHeight="100.0" prefWidth="974.0" HBox.hgrow="ALWAYS" />
-                  <HBox alignment="CENTER_RIGHT">
-                     <children>
-                        <Text fx:id="NickName" strokeType="OUTSIDE" strokeWidth="0.0" text="Nickname" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </top>
    <left>
-      <VBox fillWidth="false" prefHeight="449.0" prefWidth="212.0" spacing="30.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="620.0" prefWidth="225.0" spacing="30.0" style="-fx-background-color: navy;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="boton_Inicio" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Inicio" VBox.vgrow="SOMETIMES">
+            <ImageView fitHeight="66.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true" translateX="50.0">
+               <image>
+                  <Image url="@../Resources/money-sign-icons-design-in-blue-circle-png.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="ExpenseTracker" translateX="-15.0">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="boton_Inicio" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-radius: 3px;" text="Inicio" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="boton_AñadirGasto" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Añadir Gasto" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_AñadirGasto" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Añadir Gasto" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="boton_Historial" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Historial" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_Historial" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Historial" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
             </Button>
             <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES" />
-            <Button fx:id="boton_AjustesDeCuenta" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Ajustes de cuenta" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_AjustesDeCuenta" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Ajustes de cuenta" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
             </Button>
-            <Button fx:id="boton_CerrarSesion" alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" text="Cerrar sesión" VBox.vgrow="SOMETIMES">
+            <Button fx:id="boton_CerrarSesion" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Cerrar sesión" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="39.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
                </graphic>
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
             </Button>
          </children>
          <padding>

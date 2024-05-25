@@ -5,19 +5,19 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="697.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaHistorialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaHistorialController">
    <children>
       <HBox alignment="CENTER" fillHeight="false" prefHeight="400.0" prefWidth="697.0">
          <children>
-            <VBox>
+            <VBox HBox.hgrow="ALWAYS">
                <children>
                   <TextField fx:id="buscador" promptText="Buscador por nombre..." />
-                  <TableView fx:id="tableView">
+                  <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
                      <columns>
                         <TableColumn fx:id="colNombre" prefWidth="125.0" text="Nombre" />
                         <TableColumn fx:id="colCateg" prefWidth="125.0" text="Categoría" />
@@ -28,19 +28,19 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="160.0">
+            <VBox alignment="CENTER" fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="160.0">
                <children>
                   <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="201.0" prefWidth="184.0" spacing="15.0">
                      <children>
-                        <Button fx:id="modificar_Elemento" mnemonicParsing="false" onAction="#modificar_Gasto" prefHeight="46.0" prefWidth="139.0" text="Modificar gasto" wrapText="true">
-                           <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
+                        <Button fx:id="modificar_Elemento" mnemonicParsing="false" onAction="#modificar_Gasto" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: navy;" text="Modificar gasto" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="12.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="eliminar_Elemento" mnemonicParsing="false" onAction="#eliminar_Gasto" prefHeight="46.0" prefWidth="139.0" text="Eliminar gasto" wrapText="true">
-                           <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
+                        <Button fx:id="eliminar_Elemento" mnemonicParsing="false" onAction="#eliminar_Gasto" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: navy;" text="Eliminar gasto" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                      <VBox.margin>
@@ -49,10 +49,10 @@
                   </VBox>
                   <VBox fx:id="imprimir_Historial" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="166.0">
                      <children>
-                        <Button fx:id="modificar_Elemento1" mnemonicParsing="false" onAction="#imprimir_PDF" prefHeight="61.0" prefWidth="134.0" text="Imprimir en formato PDF" wrapText="true">
-                           <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
+                        <Button fx:id="Imprimir_PDF" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#imprimir_PDF" prefHeight="61.0" prefWidth="134.0" style="-fx-background-color: navy;" text="Imprimir en formato PDF" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="12.0" />
+                           </font>
                         </Button>
                      </children>
                      <padding>

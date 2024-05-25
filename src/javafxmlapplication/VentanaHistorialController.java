@@ -4,10 +4,28 @@
  */
 package javafxmlapplication;
 
+
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Component;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.invoke.MethodHandles;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -28,14 +46,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Cell;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import model.Account;
 import model.Acount;
 import model.AcountDAOException;
@@ -71,9 +93,9 @@ public class VentanaHistorialController implements Initializable {
     @FXML
     private TableColumn<Charge, String> colFecha;
     @FXML
-    private Button modificar_Elemento1;
-    @FXML
     private TextField buscador;
+    @FXML
+    private Button Imprimir_PDF;
     
    
 
@@ -140,9 +162,13 @@ public class VentanaHistorialController implements Initializable {
         alert.setContentText("Por favor, seleccione un elemento de la tabla.");
         alert.showAndWait();
         } else {
+            Charge cargoEditar = tableView.getSelectionModel().getSelectedItem();
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VentanaModificarGasto.fxml"));
-        Parent root = fxmlLoader.load();
+            Parent root = fxmlLoader.load();
         
+            VentanaModificarGastoController modContr = fxmlLoader.getController();
+            modContr.setCargo(cargoEditar);
             // Crear una nueva ventana (stage) para la ventana emergente
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Bloquear la ventana principal mientras la ventana emergente está abierta
@@ -150,9 +176,11 @@ public class VentanaHistorialController implements Initializable {
         stage.setScene(new Scene(root));
         
         stage.setResizable(false);
-        
+        stage.setOnHidden(e -> refreshTable());
           // Mostrar la ventana emergente y esperar a que se cierre antes de continuar
         stage.showAndWait();
+        
+        
         
         }
       
@@ -202,8 +230,93 @@ public class VentanaHistorialController implements Initializable {
 
     }
     @FXML
-    private void imprimir_PDF(ActionEvent event) {
+    private void imprimir_PDF(ActionEvent event) throws DocumentException, FileNotFoundException {
+        FileChooser fileC = new FileChooser();
+        fileC.setTitle("Guardar como");
+        fileC.getExtensionFilters().add(new FileChooser.ExtensionFilter("Archivos PDF", "*.pdf"));
+        File selectedFile = fileC.showSaveDialog(Imprimir_PDF.getScene().getWindow());
+        if(selectedFile != null){
+          String filePath = selectedFile.getAbsolutePath();
+          try{
+              Document documento = new Document(PageSize.A4);
+              PdfWriter.getInstance(documento, new FileOutputStream(filePath));
+              documento.open();
+
+              int numColumnas = tableView.getColumns().size();
+              PdfPTable pdfTabla = new PdfPTable(numColumnas);
+              
+              PdfPCell headerCellNombre = new PdfPCell(new Phrase(colNombre.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+              pdfTabla.addCell(headerCellNombre);
+              PdfPCell headerCellCategory = new PdfPCell(new Phrase(colCateg.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+              pdfTabla.addCell(headerCellCategory);
+              PdfPCell headerCellCant = new PdfPCell(new Phrase(colCant.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+              pdfTabla.addCell(headerCellCant);
+              PdfPCell headerCellUnid = new PdfPCell(new Phrase(colUnidades.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+              pdfTabla.addCell(headerCellUnid);
+              PdfPCell headerCellFecha = new PdfPCell(new Phrase(colFecha.getText(), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+              pdfTabla.addCell(headerCellFecha);
+              
+              ObservableList<Charge> items = tableView.getItems();
+                for (Charge item : items){
+                Object cellDataNombre = colNombre.getCellData(item);
+                PdfPCell celdaNombre = new PdfPCell(new Phrase((String) cellDataNombre.toString()));
+                celdaNombre.setHorizontalAlignment(Element.ALIGN_CENTER);
+                pdfTabla.addCell(celdaNombre);
+                
+                Category cellDataCategory = colCateg.getCellData(item);
+                PdfPCell celdaCat = new PdfPCell(new Phrase((String)cellDataCategory.getName()));
+                celdaCat.setHorizontalAlignment(Element.ALIGN_CENTER);
+                pdfTabla.addCell(celdaCat);
+                
+                Object cellDataCant = colCant.getCellData(item);
+                PdfPCell celdaCant = new PdfPCell(new Phrase((String) cellDataCant.toString()));
+                celdaCant.setHorizontalAlignment(Element.ALIGN_CENTER);
+                pdfTabla.addCell(celdaCant);
+                
+                Object cellDataUnid = colUnidades.getCellData(item);
+                PdfPCell celdaUnid = new PdfPCell(new Phrase((String) cellDataUnid.toString()));
+                celdaUnid.setHorizontalAlignment(Element.ALIGN_CENTER);
+                pdfTabla.addCell(celdaUnid);
+                
+                Object cellDataFecha = colFecha.getCellData(item);
+                PdfPCell celdaFecha = new PdfPCell(new Phrase((String) cellDataFecha.toString()));
+                celdaFecha.setHorizontalAlignment(Element.ALIGN_CENTER);
+                pdfTabla.addCell(celdaFecha);
+              }
+              documento.add(pdfTabla);
+              documento.close();
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("PDF guardado");
+              alert.setHeaderText("PDF generado");
+              alert.setContentText("El PDF se ha generado correctamente");
+              alert.showAndWait();
+    
+            
+          }catch (DocumentException | FileNotFoundException e){e.printStackTrace();}
+        }
     }
+    
+
+        
+        
+        
+        
+    
+                
+
+                
+
+          
+         
+    
+    
+    
+    
+            
+        
+    
+    
+        
     
     private void filterTable(String searchText) {
     if (searchText == null || searchText.trim().isEmpty()) {

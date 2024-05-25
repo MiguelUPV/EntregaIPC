@@ -39,13 +39,7 @@ import model.Category;
  */
 public class VentanaPrincipalController implements Initializable {
 
-    @FXML
-    private Text nombreUsuario;
-    @FXML
-    private Text NickName;
     
-    String nombreUsuario1 = null;
-    String nombreNickName1 = null;
     @FXML
     private Button boton_Inicio;
     @FXML
@@ -78,21 +72,7 @@ public class VentanaPrincipalController implements Initializable {
         
         
       
-        try {
-            nombreUsuario1 = Acount.getInstance().getLoggedUser().getName();
-        } catch (AcountDAOException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         
-        try {
-            nombreNickName1 = Acount.getInstance().getLoggedUser().getNickName();
-        } catch (AcountDAOException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
          boton_CerrarSesion.setOnAction(actionEvent -> {
             try {
                 cerrar_sesión();
@@ -122,8 +102,7 @@ public class VentanaPrincipalController implements Initializable {
         });
          
          
-        nombreUsuario.setText(nombreUsuario1);
-        NickName.setText(nombreNickName1);
+       
         
         
     }    
@@ -163,6 +142,7 @@ public class VentanaPrincipalController implements Initializable {
     stage.setOnHidden(a -> {
         FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaHistorial.fxml"));
         try {
+            boton_Historial.requestFocus();
             Parent inicio = historialLoader.load();
             borderPane.setCenter(inicio);
         } catch (IOException ex) {

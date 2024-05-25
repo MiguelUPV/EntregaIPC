@@ -196,7 +196,7 @@ public class VentanaAnadirGastoController implements Initializable {
         boolean registrado = acount.registerCharge(nombre, descripcion, cantidad, unidades, recibo, fecha, categoria);
         
         if (registrado) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto añadido correctamente correctamente");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto añadido correctamente");
             alert.setHeaderText(null);
             alert.showAndWait();
             

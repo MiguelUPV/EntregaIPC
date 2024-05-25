@@ -15,39 +15,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="783.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaEditarUserController">
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaEditarUserController">
    <children>
-      <VBox layoutX="-87.0" layoutY="100.0" prefHeight="499.0" prefWidth="614.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutY="110.0" prefHeight="454.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Text fill="NAVY" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos de perfil">
                <VBox.margin>
-                  <Insets bottom="20.0" left="10.0" top="10.0" />
+                  <Insets bottom="20.0" left="20.0" top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="System Bold" size="21.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="554.0" prefWidth="766.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="79.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <GridPane prefHeight="420.0" prefWidth="710.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="90.0" minHeight="10.0" prefHeight="60.800006103515635" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="74.39999389648438" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="56.59996643066407" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="83.80003662109377" minHeight="10.0" prefHeight="60.00000000000003" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="67.0" minHeight="10.0" prefHeight="36.59996337890624" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+               </rowConstraints>
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
@@ -61,15 +60,24 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
-                           </font></Text>
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
                         <TextField fx:id="cajaCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <Label fx:id="errorCorreo" text="Formato erroneo" textFill="RED" visible="false">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User:">
                            <VBox.margin>
-                              <Insets top="5.0" />
+                              <Insets bottom="5.0" top="5.0" />
                            </VBox.margin>
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
@@ -83,8 +91,17 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva contraseña:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
-                           </font></Text>
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
                         <PasswordField fx:id="cajaPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <Label fx:id="errorPassword" text="Debe contener 6 o más caracteres" textFill="#ff0202" visible="false">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
@@ -92,8 +109,17 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Repetir nueva contraseña:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
-                           </font></Text>
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
                         <PasswordField fx:id="cajaRepPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <Label fx:id="errorRepPassword" text="Las contraseñas no coinciden" textFill="RED" visible="false">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="346.0" GridPane.rowIndex="5">
@@ -101,14 +127,19 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha de creación">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
-                           </font></Text>
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Text>
                         <Text fx:id="textoFecha" strokeType="OUTSIDE" strokeWidth="0.0" text="fecha">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
-                           </font></Text>
+                           </font>
+                        </Text>
                      </children>
                   </VBox>
-                  <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <HBox alignment="BOTTOM_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
                         <Button fx:id="bGuardar" mnemonicParsing="false" onAction="#guardarEdit" style="-fx-background-color: navy;" text="Guardar" textFill="WHITE">
                            <HBox.margin>
@@ -137,21 +168,6 @@
                         </Button>
                      </children>
                   </HBox>
-                  <Label fx:id="errorRepPassword" text="Las contraseñas no coinciden" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label fx:id="errorPassword" text="Debe contener 6 o más caracteres" textFill="#ff0202" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label fx:id="errorCorreo" text="Formato erroneo" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </GridPane.margin>
-                  </Label>
                </children>
                <VBox.margin>
                   <Insets left="10.0" />

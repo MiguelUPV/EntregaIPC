@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableCell;
@@ -26,6 +27,7 @@ import model.Acount;
 import model.AcountDAOException;
 import model.Category;
 import model.Charge;
+import model.User;
 
 public class VentanaInicioController implements Initializable {
 
@@ -50,9 +52,18 @@ public class VentanaInicioController implements Initializable {
     private TableColumn<Charge, Integer> colUnidades;
     @FXML
     private TableColumn<Charge, String> colFecha;
+    @FXML
+    private Text textoBienvenido;
+    @FXML
+    private Text textoGasto1;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        
         try {
             ObservableList<String> options = FXCollections.observableArrayList(
                 "Total",
@@ -64,6 +75,8 @@ public class VentanaInicioController implements Initializable {
             choiceBox.setValue("Total");
 
             Acount acount = Acount.getInstance();
+            User usuario = acount.getLoggedUser();
+            textoBienvenido.setText("Bienvenido, " + usuario.getName());
             List<Charge> miscargos = acount.getUserCharges();
             
             colCateg.setCellFactory(column -> {
@@ -87,6 +100,10 @@ public class VentanaInicioController implements Initializable {
             colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
 
             choiceBox.setOnAction(event -> actualizarVista(miscargos));
+            
+            pieChart.setLabelLineLength(10);
+            pieChart.setLegendSide(Side.BOTTOM);
+            pieChart.setLegendVisible(true);
 
             
             actualizarVista(miscargos);

@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,12 +58,14 @@ public class VentanaEditarUserController implements Initializable {
     private Button bCancelar;
     @FXML
     private Button bFoto;
-    
+    @FXML
+    private TextField cajaApellido;
     String nombreAnt = null;
     String usernameAnt = null;
     String correoAnt = null;
     Image nuevaFoto = null;
     Image fotoAnt = null;
+    String apellidoAnt = null;
     
     
     User usuario = null;
@@ -75,12 +79,70 @@ public class VentanaEditarUserController implements Initializable {
     private Label errorCorreo;
     @FXML
     private Button boton_foto_Nueva;
-
+    
+    private static final int MAX_CHARACTERS = 20;
+    private static final int MAX_CHARACTERSLargos = 50;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        cajaApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaApellido.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaApellido.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        cajaUser.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaUser.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaUser.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaNombre.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaNombre.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+
+        cajaCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaCorreo.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERSLargos) {
+                cajaCorreo.setText(newValue.substring(0, MAX_CHARACTERSLargos));
+            }
+        });
+        
+        cajaPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaPassword.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaPassword.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+       
+        cajaRepPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaRepPassword.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaRepPassword.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
         try {
             Acount cuenta = Acount.getInstance();
             usuario = cuenta.getLoggedUser();
@@ -94,6 +156,9 @@ public class VentanaEditarUserController implements Initializable {
         usernameAnt = usuario.getNickName();
         cajaUser.setText(usernameAnt);
         cajaUser.setEditable(false);
+        
+        apellidoAnt = usuario.getSurname();
+        cajaApellido.setText(apellidoAnt);
         
         
         nombreAnt = usuario.getName();

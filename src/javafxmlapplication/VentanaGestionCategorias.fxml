@@ -4,14 +4,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="710.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="javafxmlapplication.VentanaGestionCategoriasController">
+<AnchorPane id="AnchorPane" prefHeight="420.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.VentanaGestionCategoriasController">
    <children>
       <VBox prefHeight="420.0" prefWidth="710.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,7 +28,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" stylesheets="@../Resources/CSS.css" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="colNombre" prefWidth="184.00000321865082" text="Nombre" />
                               <TableColumn fx:id="colDesc" prefWidth="414.40000915527344" text="Descripcion" />
@@ -41,19 +42,34 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="330.0" prefWidth="202.0">
                      <children>
-                        <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirCateg" text="Añadir">
+                        <Button fx:id="bEditar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#editarCateg" onMouseEntered="#resaltarEditar" onMouseExited="#noEditar" prefHeight="37.0" prefWidth="176.0" style="-fx-background-color: navy;" text="Editar Categoría" textFill="WHITE">
                            <VBox.margin>
                               <Insets bottom="20.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" translateX="-20.0">
+                                 <image>
+                                    <Image url="@../Resources/icons8-editar-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button fx:id="bEditar" mnemonicParsing="false" onAction="#editarCateg" text="Editar">
-                           <VBox.margin>
-                              <Insets bottom="20.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="bEliminar" mnemonicParsing="false" onAction="#eliminarCateg" text="Eliminar" />
+                        <Button fx:id="bEliminar" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#eliminarCateg" onDragEntered="#resaltarElim" onDragExited="#noElim" onMouseEntered="#resaltarElim" onMouseExited="#noElim" prefHeight="38.0" prefWidth="176.0" style="-fx-background-color: navy;" text="Eliminar Categoría" textFill="WHITE">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0">
+                                 <image>
+                                    <Image url="@../Resources/icons8-basura-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                      <opaqueInsets>
                         <Insets />

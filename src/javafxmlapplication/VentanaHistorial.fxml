@@ -34,13 +34,14 @@
                               <Insets />
                            </VBox.margin>
                         </TextField>
-                        <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
+                        <TableView fx:id="tableView" stylesheets="@../Resources/CSS.css" VBox.vgrow="ALWAYS">
                            <columns>
                               <TableColumn fx:id="colNombre" prefWidth="125.0" text="Nombre" />
                               <TableColumn fx:id="colCateg" prefWidth="125.0" text="Categoría" />
                               <TableColumn fx:id="colCant" prefWidth="100.0" text="Cantidad(€)" />
                               <TableColumn fx:id="colUnidades" prefWidth="60.0" text="Unidades" />
                               <TableColumn fx:id="colFecha" prefWidth="135.0" text="Fecha" />
+                              <TableColumn fx:id="colDescription" prefWidth="75.0" text="Descripción" />
                            </columns>
                            <VBox.margin>
                               <Insets bottom="10.0" />
@@ -51,11 +52,22 @@
                         </TableView>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="160.0">
+                  <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="173.0">
                      <children>
-                        <VBox fillWidth="false" prefHeight="202.0" prefWidth="130.0" spacing="15.0" VBox.vgrow="ALWAYS">
+                        <VBox fillWidth="false" prefHeight="255.0" prefWidth="138.0" spacing="15.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="modificar_Elemento" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#modificar_Gasto" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: navy;" text="Modificar gasto" textFill="WHITE" wrapText="true">
+                              <Button fx:id="bVerFactura" mnemonicParsing="false" onAction="#verFactura" onMouseEntered="#resaltarFactura" onMouseExited="#nofactura" prefHeight="46.0" prefWidth="150.0" style="-fx-background-color: navy;" text="Ver factura" textFill="WHITE">
+                                 <font>
+                                    <Font name="Franklin Gothic Heavy" size="12.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" translateX="-15.0">
+                                       <image>
+                                          <Image url="@../Resources/iconofactura.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="modificar_Elemento" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#modificar_Gasto" onMouseEntered="#resaltarMod" onMouseExited="#quitarMod" prefHeight="46.0" prefWidth="150.0" style="-fx-background-color: navy;" text="Modificar gasto" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Franklin Gothic Heavy" size="12.0" />
                                  </font>
@@ -70,7 +82,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button fx:id="eliminar_Elemento" mnemonicParsing="false" onAction="#eliminar_Gasto" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: navy;" text="Eliminar gasto" textFill="WHITE" wrapText="true">
+                              <Button fx:id="eliminar_Elemento" mnemonicParsing="false" onAction="#eliminar_Gasto" onMouseEntered="#resaltarElim" onMouseExited="#noElim" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: navy;" text="Eliminar gasto" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Franklin Gothic Heavy" size="12.0" />
                                  </font>
@@ -89,7 +101,7 @@
                         </VBox>
                         <VBox fx:id="imprimir_Historial" prefHeight="64.0" prefWidth="130.0">
                            <children>
-                              <Button fx:id="Imprimir_PDF" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#imprimir_PDF" prefHeight="61.0" prefWidth="140.0" style="-fx-background-color: navy;" text="Imprimir en formato PDF" textFill="WHITE" wrapText="true">
+                              <Button fx:id="Imprimir_PDF" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#imprimir_PDF" onMouseEntered="#resaltarImpr" onMouseExited="#noImpr" prefHeight="61.0" prefWidth="140.0" style="-fx-background-color: navy;" text="Imprimir en formato PDF" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Franklin Gothic Heavy" size="12.0" />
                                  </font>

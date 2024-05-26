@@ -20,6 +20,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Acount;
 import model.AcountDAOException;
@@ -44,7 +45,10 @@ public class VentanaCrearCategController implements Initializable {
     private Label erroNombre;
     
     private Consumer<Category> categoryAddedCallback;
-
+private static final int MAX_CHARACTERS = 20;
+private static final int MAX_CHARACTERSDescripcion = 20;
+    String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+    String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
     /**
      * Initializes the controller class.
      */
@@ -54,8 +58,18 @@ public class VentanaCrearCategController implements Initializable {
         bAnadir.setDisable(true);
 
         // Add listener to the cajaNombre text field
-        cajaNombre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+        cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaNombre.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+          cajaDesc.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERSDescripcion) {
+                cajaDesc.setText(newValue.substring(0, MAX_CHARACTERSDescripcion));
+            }
         });
     }
     
@@ -99,6 +113,26 @@ public class VentanaCrearCategController implements Initializable {
     private void cancelar(ActionEvent event) {
         Stage stage = (Stage) Cancelar.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void noAñ(MouseEvent event) {
+        bAnadir.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarAñ(MouseEvent event) {
+        bAnadir.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void resaltarCan(MouseEvent event) {
+        Cancelar.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noCan(MouseEvent event) {
+        Cancelar.setStyle(normalStyle);
     }
     
 }

@@ -38,9 +38,9 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" />
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="cajaUser" layoutX="87.0" layoutY="165.0" prefHeight="25.0" prefWidth="270.0" promptText="Usuario" />
-                        <PasswordField fx:id="cajaPassword" layoutX="87.0" layoutY="238.0" onKeyPressed="#accionarBotonIniciarConEnter" onKeyTyped="#accionarBotonIniciarConEnter" prefHeight="25.0" prefWidth="270.0" promptText="Contraseña" />
-                        <Button fx:id="bIniciar" layoutX="150.0" layoutY="318.0" mnemonicParsing="false" onAction="#IniciarSesion" onMouseEntered="#resaltar" onMouseExited="#noResaltar" prefHeight="56.0" prefWidth="158.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE">
+                        <TextField fx:id="cajaUser" layoutX="133.0" layoutY="167.0" prefHeight="25.0" prefWidth="191.0" promptText="Usuario" />
+                        <PasswordField fx:id="cajaPassword" layoutX="133.0" layoutY="250.0" onKeyPressed="#accionarBotonIniciarConEnter" onKeyTyped="#accionarBotonIniciarConEnter" prefHeight="25.0" prefWidth="191.0" promptText="Contraseña" />
+                        <Button fx:id="bIniciar" layoutX="149.0" layoutY="310.0" mnemonicParsing="false" onAction="#IniciarSesion" onMouseEntered="#resaltar" onMouseExited="#noResaltar" prefHeight="56.0" prefWidth="158.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="18.0" />
                            </font></Button>
@@ -49,18 +49,20 @@
                               <Font name="Franklin Gothic Heavy" size="36.0" />
                            </font>
                         </Text>
-                        <Text layoutX="143.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No tienes cuenta?" />
-                        <Hyperlink fx:id="linkReg" layoutX="238.0" layoutY="388.0" onAction="#ventanaReg" text="Regístrate" />
-                        <Text fx:id="textError" fill="RED" layoutX="69.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El usuario o contraseña son incorrectos" translateX="20.0" translateY="-25.0" visible="false" wrappingWidth="248.4417724609375" />
-                        <Text layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:" wrappingWidth="76.53668212890625">
+                        <Text layoutX="152.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No tienes cuenta?" />
+                        <Hyperlink fx:id="linkReg" layoutX="247.0" layoutY="386.0" onAction="#ventanaReg" text="Regístrate" />
+                        <Text fx:id="textError" fill="RED" layoutX="218.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El usuario o contraseña son incorrectos" translateX="20.0" translateY="-25.0" visible="false" wrappingWidth="248.4417724609375" />
+                        <Text layoutX="133.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario:" translateY="5.0" wrappingWidth="76.53668212890625">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
                            </font></Text>
-                        <Text layoutX="89.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:" wrappingWidth="88.53668212890625">
+                        <Text layoutX="133.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:" translateY="7.0" wrappingWidth="88.53668212890625">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="14.0" />
                            </font>
                         </Text>
+                        <Text fx:id="errorContrasena" fill="RED" layoutX="327.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña incorrecta" visible="false" />
+                        <Text fx:id="errorUser" fill="RED" layoutX="327.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario inexistente" visible="false" />
                      </children>
                   </Pane>
                </children>

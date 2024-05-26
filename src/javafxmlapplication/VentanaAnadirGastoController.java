@@ -76,18 +76,50 @@ public class VentanaAnadirGastoController implements Initializable {
     private Image recibo = null;
     @FXML
     private TextField cajaUnidades;
-    
+    private static final int MAX_CHARACTERS = 20;
+    private static final int MAX_CHARACTERSDescripcion = 500;
+    String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+    String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
     
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        String imagePath = "/Resources/archNoAsociado.png";
+        recibo = new Image(getClass().getResourceAsStream(imagePath));
+       
         bAnadir.setDisable(true);
 
         // Add listeners to text fields, date picker and choice box
-        cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> checkFields());
-        cajaCantidad.textProperty().addListener((observable, oldValue, newValue) -> checkFields());
+        cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaNombre.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaDesc.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERSDescripcion) {
+                cajaDesc.setText(newValue.substring(0, MAX_CHARACTERSDescripcion));
+            }
+        });
+        
+        cajaCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaCantidad.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+
+        cajaUnidades.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > 3) {
+                cajaUnidades.setText(newValue.substring(0, 3));
+            }
+        });
         cajaFecha.valueProperty().addListener((observable, oldValue, newValue) -> checkFields());
         choiceCateg.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> checkFields());
         
@@ -248,6 +280,56 @@ public class VentanaAnadirGastoController implements Initializable {
 
     private void desplegarCateg(MouseDragEvent event) throws AcountDAOException, IOException{
         populateCategories();
+    }
+
+    @FXML
+    private void noChoice(MouseEvent event) {
+        choiceCateg.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltaChoice(MouseEvent event) {
+        choiceCateg.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noCat(MouseEvent event) {
+        bCrearCateg.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltaCat(MouseEvent event) {
+         bCrearCateg.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noFoto(MouseEvent event) {
+        bSubirFoto.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltaFoto(MouseEvent event) {
+        bSubirFoto.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noAñ(MouseEvent event) {
+        bAnadir.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltaAñ(MouseEvent event) {
+        bAnadir.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noCancela(MouseEvent event) {
+        bCancelar.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltaCancelar(MouseEvent event) {
+        bCancelar.setStyle(hoverStyle);
     }
     
 }

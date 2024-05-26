@@ -62,8 +62,9 @@ public class VentanaInicioController implements Initializable {
     private ImageView Logo_Usuario;
     @FXML
     private TableColumn<Charge, String> colDescription;
-    @FXML
     private TableColumn<Image, String> colFichero;
+    @FXML
+    private Text textoComparacion;
     
     
 
@@ -117,7 +118,7 @@ public class VentanaInicioController implements Initializable {
             colUnidades.setCellValueFactory(new PropertyValueFactory<>("units"));
             colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
             colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-            colFichero.setCellValueFactory(new PropertyValueFactory<>("fichero"));
+            
             
             choiceBox.setOnAction(event -> actualizarVista(miscargos));
             
@@ -136,6 +137,8 @@ public class VentanaInicioController implements Initializable {
     private void actualizarVista(List<Charge> miscargos) {
         String seleccion = choiceBox.getValue();
         LocalDate ahora = LocalDate.now();
+        
+        double totalGastos = 0.0;
         
         List<Charge> cargosFiltrados = miscargos;
 
@@ -175,6 +178,8 @@ public class VentanaInicioController implements Initializable {
 
         
         sumarGastosYMostrarTotal(cargosFiltrados);
+        
+        
     }
 
     private void actualizarPieChart(List<Charge> cargos) {
@@ -208,4 +213,15 @@ public class VentanaInicioController implements Initializable {
         }
         textoCantGastada.setText(String.valueOf(totalGastos)+ " €");
     }
+    
+    
+    
+    
 }
+    
+    
+    
+    
+    
+    
+

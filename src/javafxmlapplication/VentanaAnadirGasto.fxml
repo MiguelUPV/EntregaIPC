@@ -37,8 +37,8 @@
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
-                        <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" prefWidth="150.0" />
-                        <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" text="+" />
+                        <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" onMouseEntered="#resaltaChoice" onMouseExited="#noChoice" prefWidth="150.0" stylesheets="@../Resources/CSS.css" />
+                        <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" onMouseEntered="#resaltaCat" onMouseExited="#noCat" style="-fx-background-color: navy;" text="+" textFill="WHITE" />
                         <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
@@ -58,13 +58,13 @@
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
-                        <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="493.0" mnemonicParsing="false" onAction="#subirRecibo" style="-fx-background-color: navy;" text="FOTO RECIBO" textFill="WHITE">
+                        <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="493.0" mnemonicParsing="false" onAction="#subirRecibo" onMouseEntered="#resaltaFoto" onMouseExited="#noFoto" style="-fx-background-color: navy;" text="Foto Recibo" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Button>
                         <HBox alignment="BOTTOM_RIGHT" layoutX="190.0" layoutY="506.0" prefHeight="58.0" prefWidth="156.0">
                            <children>
-                              <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirGasto" style="-fx-background-color: navy;" text="Añadir" textFill="WHITE">
+                              <Button fx:id="bAnadir" mnemonicParsing="false" onAction="#anadirGasto" onMouseEntered="#resaltaAñ" onMouseExited="#noAñ" style="-fx-background-color: navy;" text="Añadir" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets bottom="10.0" right="10.0" />
                                  </HBox.margin>
@@ -72,7 +72,7 @@
                                     <Font name="Franklin Gothic Heavy" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="bCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: navy;" text="Cancelar" textFill="WHITE">
+                              <Button fx:id="bCancelar" mnemonicParsing="false" onAction="#cancelar" onMouseEntered="#resaltaCancelar" onMouseExited="#noCancela" style="-fx-background-color: navy;" text="Cancelar" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets bottom="10.0" right="10.0" />
                                  </HBox.margin>
@@ -83,7 +83,10 @@
                            </children>
                         </HBox>
                         <Text layoutX="187.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
-                        <Label fx:id="nombreArchivo" layoutX="134.0" layoutY="429.0" maxWidth="182.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
+                        <Label fx:id="nombreArchivo" layoutX="119.0" layoutY="495.0" maxWidth="182.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding></Label>
                         <TextField fx:id="cajaUnidades" layoutX="222.0" layoutY="251.0" prefHeight="25.0" prefWidth="92.0" />
                         <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:">
                            <font>

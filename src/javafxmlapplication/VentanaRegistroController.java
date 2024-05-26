@@ -71,12 +71,73 @@ public class VentanaRegistroController implements Initializable {
     private Text nombreImagen;
     
     public Image fotoPerfil = null;
-
+    private static final int MAX_CHARACTERS = 20;
+    private static final int MAX_CHARACTERSLargos = 50;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        bRegist.setDisable(true);
+        
+        cajaUser.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaUser.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaUser.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaName.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaName.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaName.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaApellido.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaApellido.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaApellido.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaCorreo.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERSLargos) {
+                cajaCorreo.setText(newValue.substring(0, MAX_CHARACTERSLargos));
+            }
+        });
+        
+        cajaPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaPassword.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaPassword.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+       
+        cajaRepetir.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.contains(" ")) {
+                cajaRepetir.setText(oldValue);
+            }
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaRepetir.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        
+        
+        
         cajaUser.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.contains(" ")) {
                 cajaUser.setText(oldValue);
@@ -115,21 +176,64 @@ public class VentanaRegistroController implements Initializable {
         });
         
         // BooleanBinding para habilitar/deshabilitar el botón bRegist
-        BooleanBinding bb = Bindings.createBooleanBinding(
-                () -> cajaName.getText().isEmpty() ||
-                      cajaApellido.getText().isEmpty() || // Añadido para cajaApellido
-                      cajaUser.getText().isEmpty() ||
-                      cajaCorreo.getText().isEmpty() ||
-                      cajaPassword.getText().isEmpty() ||
-                      cajaRepetir.getText().isEmpty(),
-                cajaName.textProperty(),
-                cajaApellido.textProperty(), // Añadido para cajaApellido
-                cajaUser.textProperty(),
-                cajaCorreo.textProperty(),
-                cajaPassword.textProperty(),
-                cajaRepetir.textProperty()
-        );
-        bRegist.disableProperty().bind(bb);    }
+           
+        
+        cajaName.textProperty().addListener((observable, oldValue, newValue) -> {
+            actualizarEstadoBotonGuardar();
+        });
+        
+        cajaRepetir.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.equals(cajaPassword.getText())) {
+            errorRepetir.setVisible(true);
+        } else {
+            errorRepetir.setVisible(false);
+        }
+        actualizarEstadoBotonGuardar();
+        });
+        
+        cajaPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.isEmpty()) {
+            if (!validarPassword(newValue)) {
+                errorPassword.setVisible(true);
+            } else {
+                errorPassword.setVisible(false);
+            }
+        } else {
+            errorPassword.setVisible(false);
+        }
+        actualizarEstadoBotonGuardar();
+        });
+        
+        cajaCorreo.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.isEmpty()) {
+            if (!validarCorreo(newValue)) {
+                errorCorreo.setVisible(true);
+            } else {
+                errorCorreo.setVisible(false);
+            }
+        } else {
+            errorCorreo.setVisible(false);
+        }
+        actualizarEstadoBotonGuardar();
+        });
+        
+        cajaUser.textProperty().addListener((o, oldVal, newVal) -> {
+            try {
+                Acount acount = Acount.getInstance();
+                if (acount.existsLogin(newVal)) {
+                    errorUser.setVisible(true);
+                } else {
+                    errorUser.setVisible(false);
+                }
+            } catch (AcountDAOException ex) {
+                Logger.getLogger(VentanaRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaRegistroController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            actualizarEstadoBotonGuardar();
+        });
+        
+    }
 
     @FXML
     private void registrarse(ActionEvent event) throws AcountDAOException {
@@ -145,30 +249,7 @@ public class VentanaRegistroController implements Initializable {
         
             Acount acount = Acount.getInstance();
             
-            if (acount.existsLogin(user)) {
-                errorUser.setVisible(true);
-                cajaUser.setText("");
-            } else {
-                errorUser.setVisible(false);
-                
-                if (!validarCorreo(correo)) {
-                    errorCorreo.setVisible(true);
-                    cajaCorreo.setText("");
-                } else {
-                    errorCorreo.setVisible(false);
-                    if (!validarPassword(password)) {
-                        errorPassword.setVisible(true);
-                        cajaPassword.setText("");
-                    } else {
-                        errorPassword.setVisible(false);
-                        
-                        if (!password.equals(repetida)) {
-                            errorRepetir.setVisible(true);
-                            cajaRepetir.setText("");
-                        } else {
-                            errorRepetir.setVisible(false);
-                            
-                            if (acount.registerUser(name, apellido, correo, user, password, fotoPerfil, fechaActual)) {
+            if (acount.registerUser(name, apellido, correo, user, password, fotoPerfil, fechaActual)) {
                                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setHeaderText("Usuario creado correctamente");
                                 alert.setContentText("Inicie sesión para acceder a la aplicación");
@@ -181,17 +262,16 @@ public class VentanaRegistroController implements Initializable {
                                 Scene scene = new Scene(root);
                                 stage.setScene(scene);
                                 stage.show();
-                            }           
-                        }
-                    }
+                            }       
+                    
                 
                 
-                }
+                
                 
                     
                 
                 
-            }
+            
         } catch (IOException ex) {
             Logger.getLogger(VentanaRegistroController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -298,7 +378,23 @@ public class VentanaRegistroController implements Initializable {
         bCancel.setStyle(hoverStyle);
     }
     
-   
     
     
+   private void actualizarEstadoBotonGuardar() {
+    boolean camposVacios = cajaName.getText().isEmpty() ||
+                           cajaCorreo.getText().isEmpty() ||
+                           cajaPassword.getText().isEmpty() ||
+                           cajaUser.getText().isEmpty() ||
+                           cajaApellido.getText().isEmpty() ||
+                           cajaRepetir.getText().isEmpty();
+
+    boolean erroresVisibles = errorCorreo.isVisible() ||
+                              errorPassword.isVisible() ||
+                              errorUser.isVisible() ||
+                              errorRepetir.isVisible();
+
+    bRegist.setDisable(camposVacios || erroresVisibles);
+    
+    
+   }
 }

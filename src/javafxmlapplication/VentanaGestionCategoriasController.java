@@ -25,6 +25,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -45,8 +47,6 @@ public class VentanaGestionCategoriasController implements Initializable {
     @FXML
     private TableView<Category> tableView;
     @FXML
-    private Button bAnadir;
-    @FXML
     private Button bEditar;
     @FXML
     private Button bEliminar;
@@ -54,6 +54,8 @@ public class VentanaGestionCategoriasController implements Initializable {
     private TableColumn<Category, String> colNombre;
     @FXML
     private TableColumn<Category, String> colDesc;
+    String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+    String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
     
     private Acount cuenta;
 
@@ -78,7 +80,6 @@ public class VentanaGestionCategoriasController implements Initializable {
         }
     }    
 
-    @FXML
     private void anadirCateg(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VentanaCrearCateg.fxml"));
         Parent root = fxmlLoader.load();
@@ -142,7 +143,7 @@ public class VentanaGestionCategoriasController implements Initializable {
             alert.showAndWait();
         } else {
             
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Eliminar categoría");
             alert.setHeaderText("¿Está seguro de querer continuar?");
             alert.setContentText("Al eliminar la categoría " + catEliminar.getName() + " se eliminarán todos\n los gastos asociados a esta categoria" );
@@ -162,5 +163,28 @@ public class VentanaGestionCategoriasController implements Initializable {
         tableView.refresh();
         tableView.getSelectionModel().clearSelection();
     }
+
+    @FXML
+    private void noEditar(MouseEvent event) {
+        bEditar.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarEditar(MouseEvent event) {
+        bEditar.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noElim(MouseEvent event) {
+        bEliminar.setStyle(normalStyle);
+    }
+
     
+
+    @FXML
+    private void resaltarElim(MouseEvent event) {
+        bEliminar.setStyle(hoverStyle);
+    }
+
+
 }

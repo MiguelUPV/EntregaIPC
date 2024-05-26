@@ -73,10 +73,10 @@
                         <Font name="Franklin Gothic Heavy" size="12.0" />
                      </font>
                   </Button>
-                  <Text fx:id="errorUser" fill="RED" layoutX="302.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sin espacios / No se repite" visible="false" />
-                  <Text fx:id="errorCorreo" fill="RED" layoutX="302.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo incorrecto" visible="false" />
-                  <Text fx:id="errorPassword" fill="RED" focusTraversable="true" layoutX="302.0" layoutY="423.0" pickOnBounds="true" smooth="false" strokeType="OUTSIDE" strokeWidth="20.0" text="+6 núm y letras" visible="false" wrappingWidth="200.671875" />
-                  <Text fx:id="errorRepetir" fill="RED" layoutX="302.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña no coincide" visible="false" />
+                  <Text fx:id="errorUser" fill="RED" layoutX="246.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Este usuario ya existe" visible="false" />
+                  <Text fx:id="errorCorreo" fill="RED" layoutX="302.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Formato incorrecto" visible="false" />
+                  <Text fx:id="errorPassword" fill="RED" focusTraversable="true" layoutX="246.0" layoutY="350.0" pickOnBounds="true" smooth="false" strokeType="OUTSIDE" strokeWidth="20.0" text="Debe contener al menos 6 caracteres" visible="false" wrappingWidth="200.671875" />
+                  <Text fx:id="errorRepetir" fill="RED" layoutX="246.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Las contraseñas no coinciden" visible="false" />
                   <Button fx:id="bCancel" layoutX="368.0" layoutY="479.0" mnemonicParsing="false" onAction="#cancelar" onMouseEntered="#resaltarCancelar" onMouseExited="#resaltarNoCancelar" prefHeight="22.0" prefWidth="70.0" style="-fx-background-color: navy;" text="Cancel" textFill="WHITE">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="12.0" />

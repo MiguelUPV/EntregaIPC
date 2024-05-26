@@ -195,20 +195,21 @@ public class VentanaPrincipalController implements Initializable {
     }    
 
     private void cerrar_sesión() throws IOException {
-       Alert alert = new Alert(AlertType.CONFIRMATION);
-       alert.setTitle("Cerrar sesión");
-       alert.setHeaderText("¿Está a punto de cerrar la sesión?");
-       alert.setContentText("¿Seguro que quiere continuar?");
-       Optional<ButtonType> result = alert.showAndWait();
-       if (result.isPresent() && result.get() == ButtonType.OK){
-       System.out.println("OK");
-       FXMLLoader inicio = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle("Cerrar sesión");
+    alert.setHeaderText("¿Está a punto de cerrar la sesión?");
+    alert.setContentText("¿Seguro que quiere continuar?");
+    Optional<ButtonType> result = alert.showAndWait();
+    if (result.isPresent() && result.get() == ButtonType.OK){
+        System.out.println("OK");
+        FXMLLoader inicio = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));
         Parent root = inicio.load();
         Stage stage = (Stage) boton_CerrarSesion.getScene().getWindow();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 850, 525); // Establecer el tamaño de la escena
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
-        } else {
+    } else {
         System.out.println("CANCELAR");
         
 }

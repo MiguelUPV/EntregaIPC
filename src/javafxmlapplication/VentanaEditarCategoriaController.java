@@ -34,7 +34,8 @@ public class VentanaEditarCategoriaController implements Initializable {
     private Button Cancelar;
     
     private Category category;
-
+    private static final int MAX_CHARACTERS = 20;
+    private static final int MAX_CHARACTERSDescripcion = 20;
     /**
      * Initializes the controller class.
      */
@@ -43,8 +44,18 @@ public class VentanaEditarCategoriaController implements Initializable {
         bConfirmar.setDisable(true);
 
         
-        cajaNombre.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+        cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> {
             checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaNombre.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+        cajaDesc.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERSDescripcion) {
+                cajaDesc.setText(newValue.substring(0, MAX_CHARACTERSDescripcion));
+            }
         });
     }    
 

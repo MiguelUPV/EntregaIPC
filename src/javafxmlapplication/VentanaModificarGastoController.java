@@ -72,13 +72,41 @@ public class VentanaModificarGastoController implements Initializable {
     private Button bCrearCateg;
     
     private Charge cargoSelec;
-
+    private static final int MAX_CHARACTERS = 20;
+    private static final int MAX_CHARACTERSDescripcion = 500;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+         cajaNombre.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaNombre.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+
+        cajaCantidad.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                cajaCantidad.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+
+        CajaUnidades.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERS) {
+                CajaUnidades.setText(newValue.substring(0, MAX_CHARACTERS));
+            }
+        });
+        
+                cajaDesc.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkFields();
+            if (newValue.length() > MAX_CHARACTERSDescripcion) {
+                cajaDesc.setText(newValue.substring(0, MAX_CHARACTERSDescripcion));
+            }
+        });
         
         choiceCateg.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
         if (isNowShowing) {
@@ -158,6 +186,7 @@ public class VentanaModificarGastoController implements Initializable {
         }
     }
     
+    @FXML
     private void cancelar(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
@@ -216,6 +245,7 @@ public class VentanaModificarGastoController implements Initializable {
         cargoSelec.setDate(cajaFecha.getValue());
         cargoSelec.setDescription(cajaDesc.getText());
         cargoSelec.setUnits(Integer.parseInt(CajaUnidades.getText()));
+        cargoSelec.setImageScan(recibo);
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Gasto editado correctamente");
             alert.setHeaderText(null);

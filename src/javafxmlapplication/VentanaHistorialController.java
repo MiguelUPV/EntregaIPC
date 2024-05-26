@@ -52,6 +52,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -99,7 +103,13 @@ public class VentanaHistorialController implements Initializable {
     private Button Imprimir_PDF;
     @FXML
     private Text textoBienvenido;
+    @FXML
+    private TableColumn<?, ?> colDescription;
+    @FXML
+    private Button bVerFactura;
     
+    String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+    String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
    
 
     /**
@@ -139,6 +149,7 @@ public class VentanaHistorialController implements Initializable {
         colCant.setCellValueFactory(new PropertyValueFactory<>("cost"));
         colUnidades.setCellValueFactory(new PropertyValueFactory<>("units"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         
     }
     
@@ -337,5 +348,74 @@ public class VentanaHistorialController implements Initializable {
         tableView.setItems(filteredList);
     }
     
+    }
+
+    @FXML
+    private void verFactura(ActionEvent event) {
+        Charge selectedCharge = tableView.getSelectionModel().getSelectedItem();
+        
+        if (selectedCharge == null) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Advertencia");
+        alert.setHeaderText("No se ha seleccionado ningún elemento");
+        alert.setContentText("Por favor, seleccione un elemento de la tabla.");
+        alert.showAndWait();
+       
+        } else {
+            Image image = selectedCharge.getImageScan();
+    
+        // Crear un nuevo ImageView para mostrar la imagen
+        ImageView imageView = new ImageView(image);
+
+        // Crear una nueva ventana para mostrar la imagen
+        Stage stage = new Stage();
+        stage.setTitle("Factura de " + selectedCharge.getName());
+        stage.setScene(new Scene(new StackPane(imageView), image.getWidth(), image.getHeight()));
+        stage.show();
+        }
+        
+        
+    }
+
+    @FXML
+    private void nofactura(MouseEvent event) {
+        bVerFactura.setStyle(normalStyle);
+        
+        
+    }
+
+    @FXML
+    private void resaltarFactura(MouseEvent event) {
+        bVerFactura.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void quitarMod(MouseEvent event) {
+        modificar_Elemento.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarMod(MouseEvent event) {
+        modificar_Elemento.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noElim(MouseEvent event) {
+        eliminar_Elemento.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarElim(MouseEvent event) {
+        eliminar_Elemento.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noImpr(MouseEvent event) {
+        Imprimir_PDF.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarImpr(MouseEvent event) {
+        Imprimir_PDF.setStyle(hoverStyle);
     }
 }

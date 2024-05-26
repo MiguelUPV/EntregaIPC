@@ -41,8 +41,8 @@
                </font></Text>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ChoiceBox fx:id="choiceCateg" prefWidth="150.0" />
-                  <Button fx:id="bCrearCateg" mnemonicParsing="false" onAction="#crearCateg" text="+">
+                  <ChoiceBox fx:id="choiceCateg" prefWidth="150.0" stylesheets="@../Resources/CSS.css" />
+                  <Button fx:id="bCrearCateg" mnemonicParsing="false" onAction="#crearCateg" style="-fx-background-color: navy;" text="+" textFill="WHITE">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -115,7 +115,7 @@
                         <Font name="Franklin Gothic Heavy" size="12.0" />
                      </font>
                   </Button>
-                  <Label fx:id="nombreArchivo" text="Label" />
+                  <Label fx:id="nombreArchivo" text="Label" translateX="8.0" translateY="2.0" />
                </children>
             </HBox>
          </children>
@@ -129,7 +129,7 @@
                <font>
                   <Font name="Franklin Gothic Heavy" size="12.0" />
                </font></Button>
-            <Button fx:id="bCancelar" mnemonicParsing="false" style="-fx-background-color: navy;" text="Cancelar" textFill="WHITE">
+            <Button fx:id="bCancelar" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: navy;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font name="Franklin Gothic Heavy" size="12.0" />
                </font></Button>

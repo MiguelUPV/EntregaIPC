@@ -1,0 +1,26 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 25 may 2024, 19:42:19
+    Author     : idris
+*/
+
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-background-color: navy;
+}
+
+.choice-box {
+  -fx-background-color : navy; /* Cadet Blue */
+  -fx-text-fill : white;
+  -fx-font-family : Franklin Gothic Heavy;
+  -fx-font-size : 12;
+  -fx-font-style : normal;
+  -fx-font-weight: bold;
+}
+
+.choice-box > .label {
+  -fx-text-fill: white;
+}

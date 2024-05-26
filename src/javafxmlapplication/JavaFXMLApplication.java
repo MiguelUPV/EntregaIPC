@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -30,6 +31,7 @@ public class JavaFXMLApplication extends Application {
         stage.setScene(scene);
         stage.setTitle("ExpenseTracker");
         stage.setResizable(false);
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/Resources/money-sign-icons-design-in-blue-circle-png.png")));
         
         stage.show();
     }

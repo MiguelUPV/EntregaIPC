@@ -40,7 +40,7 @@
                      <children>
                         <TextField fx:id="cajaUser" layoutX="87.0" layoutY="165.0" prefHeight="25.0" prefWidth="270.0" promptText="Usuario" />
                         <PasswordField fx:id="cajaPassword" layoutX="87.0" layoutY="238.0" onKeyPressed="#accionarBotonIniciarConEnter" onKeyTyped="#accionarBotonIniciarConEnter" prefHeight="25.0" prefWidth="270.0" promptText="Contraseña" />
-                        <Button fx:id="bIniciar" layoutX="150.0" layoutY="318.0" mnemonicParsing="false" onAction="#IniciarSesion" onMouseEntered="#resaltar" onMouseExited="#noResaltar" prefHeight="56.0" prefWidth="158.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE">
+                        <Button fx:id="bIniciar" layoutX="150.0" layoutY="318.0" mnemonicParsing="false" onAction="#IniciarSesion" prefHeight="56.0" prefWidth="158.0" style="-fx-background-color: navy;" text="Iniciar Sesión" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="18.0" />
                            </font></Button>

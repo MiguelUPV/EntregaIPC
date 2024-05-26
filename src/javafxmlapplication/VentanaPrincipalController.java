@@ -20,6 +20,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -41,19 +44,25 @@ public class VentanaPrincipalController implements Initializable {
 
     
     @FXML
-    private Button boton_Inicio;
+    private ToggleButton boton_Inicio;
     @FXML
-    private Button boton_AñadirGasto;
+    private ToggleButton boton_AñadirGasto;
     @FXML
-    private Button boton_Historial;
+    private ToggleButton boton_Historial;
     @FXML
-    private Button boton_AjustesDeCuenta;
+    private ToggleButton boton_AjustesDeCuenta;
     @FXML
     private Button boton_CerrarSesion;
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Button boton_AnadirCateg;
+    private ToggleButton boton_AnadirCateg;
+    String normalStyle = "-fx-background-color: white; -fx-text-fill: navy;";
+    String hoverStyle = "-fx-background-color: #97a5b8; -fx-text-fill: white;";
+    @FXML
+    private ToggleButton boton_VisualizarCategorias;
+    private ToggleGroup toggle;
+     
     
     
     /**
@@ -62,12 +71,20 @@ public class VentanaPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
+        toggle= new ToggleGroup();
+        boton_AjustesDeCuenta.setToggleGroup(toggle);
+        boton_AnadirCateg.setToggleGroup(toggle);
+        boton_AñadirGasto.setToggleGroup(toggle);
+        boton_Historial.setToggleGroup(toggle);
+        boton_Inicio.setToggleGroup(toggle);
+        boton_VisualizarCategorias.setToggleGroup(toggle);
+        
         FXMLLoader inicioLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaInicio.fxml"));
         try {
             Parent inicio;
             inicio = inicioLoader.load();
             borderPane.setCenter(inicio);
+            boton_Inicio.setStyle(hoverStyle);
         } catch (IOException ex) {
             Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,35 +94,95 @@ public class VentanaPrincipalController implements Initializable {
         
          boton_CerrarSesion.setOnAction(actionEvent -> {
             try {
+                boton_Inicio.setStyle(normalStyle);
+                boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
+                boton_CerrarSesion.setStyle(hoverStyle);
                 cerrar_sesión();
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
          
+        boton_VisualizarCategorias.setOnAction((t) -> {
+            boton_Inicio.setStyle(normalStyle);
+                boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(hoverStyle);
+                boton_CerrarSesion.setStyle(normalStyle);
+                visualizarCategorias();
+        });
+         
         boton_Historial.setOnAction(actionEvent -> {
+            boton_Inicio.setStyle(normalStyle);
+                boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
+            boton_Historial.setStyle(hoverStyle);
              abrir_historial();
         }); 
         
         boton_AñadirGasto.setOnAction(actionEvent -> {
             try {
+                boton_Inicio.setStyle(normalStyle);
+                boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(hoverStyle);
                 anadirGasto();
+                boton_Historial.setStyle(hoverStyle);
+                boton_Historial.isSelected();
+                boton_AñadirGasto.setStyle(normalStyle);
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }); 
         
         boton_Inicio.setOnAction(actionEvent -> {
+                boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
+            boton_Inicio.setStyle(hoverStyle);
             abrirInicio();
         });
         
         boton_AjustesDeCuenta.setOnAction((actionEvent) -> {
+            boton_AjustesDeCuenta.setStyle(hoverStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
             abrirAjustesDeCuenta();
         });
         
         boton_AnadirCateg.setOnAction(((t) -> {
             try {
+                 boton_AjustesDeCuenta.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(normalStyle);
+                boton_AñadirGasto.setStyle(normalStyle);
+                boton_Historial.setStyle(normalStyle);
+                boton_Inicio.setStyle(normalStyle);
+                boton_VisualizarCategorias.setStyle(normalStyle);
+                boton_AnadirCateg.setStyle(hoverStyle);
                 anadirCateg();
+                boton_VisualizarCategorias.setStyle(hoverStyle);
+                boton_VisualizarCategorias.isSelected();
+                boton_AnadirCateg.setStyle(normalStyle);
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -209,7 +286,105 @@ public class VentanaPrincipalController implements Initializable {
         stage.setScene(new Scene(root));
         stage.setResizable(false);
     
+        stage.setOnHidden(a -> {
+        FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaGestionCategorias.fxml"));
+        try {
+            boton_VisualizarCategorias.requestFocus();
+            Parent inicio = historialLoader.load();
+            borderPane.setCenter(inicio);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    });
+        
         stage.showAndWait();
+        
+        
     }
+
+    @FXML
+    private void noInicio(MouseEvent event) {
+        if(!boton_Inicio.isSelected()){boton_Inicio.setStyle(normalStyle);}
+       
+    }
+
+    @FXML
+    private void resaltarInicio(MouseEvent event) {
+        boton_Inicio.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noGasto(MouseEvent event) {
+        if(!boton_AñadirGasto.isSelected()){boton_AñadirGasto.setStyle(normalStyle);}
+    }
+
+    @FXML
+    private void resaltarGasto(MouseEvent event) {
+        boton_AñadirGasto.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noCategoria(MouseEvent event) {
+        if(!boton_AnadirCateg.isSelected()){boton_AnadirCateg.setStyle(normalStyle);}
+    }
+
+    @FXML
+    private void resaltarCategoria(MouseEvent event) {
+        boton_AnadirCateg.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noVisualizar(MouseEvent event) {
+       if(!boton_Historial.isSelected()) {boton_Historial.setStyle(normalStyle);}
+    }
+
+    @FXML
+    private void resaltarVisualizar(MouseEvent event) {
+        boton_Historial.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noDatos(MouseEvent event) {
+        if(!boton_AjustesDeCuenta.isSelected()){boton_AjustesDeCuenta.setStyle(normalStyle);}
+    }
+
+    @FXML
+    private void resaltarDatos(MouseEvent event) {
+        boton_AjustesDeCuenta.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noCerrar(MouseEvent event) {
+        boton_CerrarSesion.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarCerrar(MouseEvent event) {
+        boton_CerrarSesion.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noVisCat(MouseEvent event) {
+        if(!boton_VisualizarCategorias.isSelected()){boton_VisualizarCategorias.setStyle(normalStyle);}
+    }
+
+    @FXML
+    private void resaltarVisualizarCat(MouseEvent event) {
+        boton_VisualizarCategorias.setStyle(hoverStyle);
+    }
+
+    private void visualizarCategorias() {
+        FXMLLoader historialLoader = new FXMLLoader(getClass().getResource("/javafxmlapplication/VentanaGestionCategorias.fxml"));
+        try {
+            Parent inicio;
+            inicio = historialLoader.load();
+            borderPane.setCenter(inicio);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
     
 }

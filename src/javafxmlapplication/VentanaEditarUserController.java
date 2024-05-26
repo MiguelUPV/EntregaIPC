@@ -73,6 +73,8 @@ public class VentanaEditarUserController implements Initializable {
     private Label errorPassword;
     @FXML
     private Label errorCorreo;
+    @FXML
+    private Button boton_foto_Nueva;
 
     /**
      * Initializes the controller class.
@@ -185,6 +187,7 @@ public class VentanaEditarUserController implements Initializable {
         usuario.setImage(imagenPerfil.getImage());
         usuario.setPassword(cajaPassword.getText());
         
+        
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setHeaderText("Cambios realizados correctamente.");
         alerta.showAndWait();
@@ -265,5 +268,33 @@ public class VentanaEditarUserController implements Initializable {
 
     bGuardar.setDisable(camposVacios || erroresVisibles);
 }
+
+    @FXML
+    private void nuevaFoto(ActionEvent event) {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Seleccionar Imagen");
+    fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
+    );
+
+    File file = fileChooser.showOpenDialog(boton_foto_Nueva.getScene().getWindow());
+    if (file != null) {
+        try {
+            Image fotoPerfil = new Image(file.toURI().toString());
+            imagenPerfil.setImage(fotoPerfil);
+            // Verificar si la imagen se cargó correctamente
+            if (fotoPerfil.isError()) {
+                throw new IOException("No se pudo cargar la imagen");
+            }
+            //nombreImagen.setText(file.getName());
+            //nombreImagen.setVisible(true);
+            // Usa 'this.fotoPerfil' si 'fotoPerfil' es una variable de clase
+            // this.fotoPerfil = fotoPerfil;
+        } catch (IOException e) {
+            // Manejar la excepción, por ejemplo, mostrar un mensaje de error
+            System.err.println("Error al cargar la imagen: " + e.getMessage());
+        }
+    }
+    }
     
 }

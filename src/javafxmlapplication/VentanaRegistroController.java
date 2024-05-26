@@ -28,6 +28,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -239,6 +240,8 @@ public class VentanaRegistroController implements Initializable {
     fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg", "*.gif")
     );
+    
+    
 
     File file = fileChooser.showOpenDialog(bFoto.getScene().getWindow());
     if (file != null) {
@@ -258,6 +261,42 @@ public class VentanaRegistroController implements Initializable {
         }
     }
 }
+
+    @FXML
+    private void noResaltarRegistrar(MouseEvent event) {
+        String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+        bRegist.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarRegistrar(MouseEvent event) {
+        String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
+        bRegist.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void noResaltarFoto(MouseEvent event) {
+        String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+        bFoto.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarFoto(MouseEvent event) {
+        String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
+        bFoto.setStyle(hoverStyle);
+    }
+
+    @FXML
+    private void resaltarNoCancelar(MouseEvent event) 
+    {String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+    bCancel.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltarCancelar(MouseEvent event) {
+        String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
+        bCancel.setStyle(hoverStyle);
+    }
     
    
     

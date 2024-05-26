@@ -28,33 +28,36 @@
                               <Font name="Franklin Gothic Heavy" size="36.0" />
                            </font>
                         </Text>
-                        <Text layoutX="33.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                        <Text layoutX="33.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
                         <TextField fx:id="cajaNombre" layoutX="34.0" layoutY="124.0" />
-                        <Text layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
+                        <Text layoutX="34.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
                         <ChoiceBox fx:id="choiceCateg" layoutX="33.0" layoutY="182.0" prefWidth="150.0" />
                         <Button fx:id="bCrearCateg" layoutX="198.0" layoutY="182.0" mnemonicParsing="false" onAction="#crearCateg" text="+" />
-                        <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe">
+                        <Text layoutX="33.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Importe:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
                         <TextField fx:id="cajaCantidad" layoutX="33.0" layoutY="251.0" prefHeight="25.0" prefWidth="150.0" />
-                        <Text layoutX="222.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades">
+                        <Text layoutX="222.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unidades:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
                         <DatePicker fx:id="cajaFecha" layoutX="32.0" layoutY="321.0" prefHeight="25.0" prefWidth="150.0" promptText="dd/mm/aaaa" />
-                        <Text layoutX="34.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción (opcional)">
+                        <Text layoutX="34.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción(opcional):">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>
                         <TextArea fx:id="cajaDesc" layoutX="32.0" layoutY="391.0" prefHeight="62.0" prefWidth="281.0" />
-                        <Text layoutX="32.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjuntar factura" />
+                        <Text layoutX="32.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adjuntar factura:">
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="12.0" />
+                           </font></Text>
                         <Button fx:id="bSubirFoto" layoutX="32.0" layoutY="493.0" mnemonicParsing="false" onAction="#subirRecibo" style="-fx-background-color: navy;" text="FOTO RECIBO" textFill="WHITE">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
@@ -82,7 +85,7 @@
                         <Text layoutX="187.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
                         <Label fx:id="nombreArchivo" layoutX="134.0" layoutY="429.0" maxWidth="182.0" prefHeight="17.0" prefWidth="182.0" text="Label" visible="false" />
                         <TextField fx:id="cajaUnidades" layoutX="222.0" layoutY="251.0" prefHeight="25.0" prefWidth="92.0" />
-                        <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                        <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha:">
                            <font>
                               <Font name="Franklin Gothic Heavy" size="12.0" />
                            </font></Text>

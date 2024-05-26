@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <GridPane prefHeight="420.0" prefWidth="710.0" VBox.vgrow="ALWAYS">
+            <GridPane prefHeight="420.0" prefWidth="686.0" VBox.vgrow="ALWAYS">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -52,8 +52,11 @@
                               <Font name="Franklin Gothic Heavy" size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="cajaNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <TextField fx:id="cajaNombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="162.0" promptText="Escribe tu nuevo nombre" />
                      </children>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
@@ -65,15 +68,18 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="cajaCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <TextField fx:id="cajaCorreo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="234.0" promptText="Escribe tu nuevo correo" />
                         <Label fx:id="errorCorreo" text="Formato erroneo" textFill="RED" visible="false">
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </Label>
                      </children>
+                     <padding>
+                        <Insets top="55.0" />
+                     </padding>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                  <VBox prefHeight="56.0" prefWidth="350.0" GridPane.rowIndex="2">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="User:">
                            <VBox.margin>
@@ -83,8 +89,11 @@
                               <Font name="Franklin Gothic Heavy" size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="cajaUser" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <TextField fx:id="cajaUser" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="162.0" />
                      </children>
+                     <GridPane.margin>
+                        <Insets top="10.0" />
+                     </GridPane.margin>
                   </VBox>
                   <VBox prefHeight="56.0" prefWidth="302.0" GridPane.rowIndex="3">
                      <children>
@@ -96,7 +105,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Text>
-                        <PasswordField fx:id="cajaPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <PasswordField fx:id="cajaPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="192.0" promptText="Introduce la nueva contraseña" />
                         <Label fx:id="errorPassword" text="Debe contener 6 o más caracteres" textFill="#ff0202" visible="false">
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -114,7 +123,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Text>
-                        <PasswordField fx:id="cajaRepPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" />
+                        <PasswordField fx:id="cajaRepPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="192.0" promptText="Introduce de nuevo la contraseña" />
                         <Label fx:id="errorRepPassword" text="Las contraseñas no coinciden" textFill="RED" visible="false">
                            <VBox.margin>
                               <Insets top="5.0" />
@@ -159,7 +168,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="136.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                  <HBox alignment="CENTER" prefHeight="136.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
                      <children>
                         <Button fx:id="bFoto" mnemonicParsing="false" onAction="#actualizarFotoPerfil" prefHeight="104.0" prefWidth="110.0">
                            <graphic>
@@ -168,6 +177,23 @@
                         </Button>
                      </children>
                   </HBox>
+                  <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nueva foto:">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Franklin Gothic Heavy" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" layoutX="360.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="boton_foto_Nueva" mnemonicParsing="false" onAction="#nuevaFoto" text="Subir foto" />
+                     </children>
+                  </VBox>
                </children>
                <VBox.margin>
                   <Insets left="10.0" />

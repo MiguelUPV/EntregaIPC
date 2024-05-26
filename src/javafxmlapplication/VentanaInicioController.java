@@ -22,6 +22,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Acount;
 import model.AcountDAOException;
@@ -56,13 +58,29 @@ public class VentanaInicioController implements Initializable {
     private Text textoBienvenido;
     @FXML
     private Text textoGasto1;
+    @FXML
+    private ImageView Logo_Usuario;
+    @FXML
+    private TableColumn<Charge, String> colDescription;
+    @FXML
+    private TableColumn<Image, String> colFichero;
     
     
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+        try {
+            Acount cuenta = Acount.getInstance();
+            User usuario = cuenta.getLoggedUser();
+            if(usuario.getImage()!= null){
+            Logo_Usuario.setImage(usuario.getImage());}
+            
+            
+        } catch (AcountDAOException ex) {
+            Logger.getLogger(VentanaEditarUserController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaEditarUserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         try {
             ObservableList<String> options = FXCollections.observableArrayList(
@@ -98,7 +116,9 @@ public class VentanaInicioController implements Initializable {
             colCant.setCellValueFactory(new PropertyValueFactory<>("cost"));
             colUnidades.setCellValueFactory(new PropertyValueFactory<>("units"));
             colFecha.setCellValueFactory(new PropertyValueFactory<>("date"));
-
+            colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+            colFichero.setCellValueFactory(new PropertyValueFactory<>("fichero"));
+            
             choiceBox.setOnAction(event -> actualizarVista(miscargos));
             
             pieChart.setLabelLineLength(10);

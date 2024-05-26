@@ -29,6 +29,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import model.Acount;
 import model.AcountDAOException;
@@ -58,12 +59,15 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         labelMessage.setText("Hello, this is your first JavaFX project - IPC");
     }
+
+       
     
     //=========================================================
     // you must initialize here all related with the object 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+         String normalStyle = "-fx-background-color: #navy; -fx-text-fill: white;";
+        String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
       
     
         
@@ -157,5 +161,17 @@ public class FXMLDocumentController implements Initializable {
         }
     
 
+    }
+
+    @FXML
+    private void noResaltar(MouseEvent event) {
+        String normalStyle = "-fx-background-color: navy; -fx-text-fill: white;";
+        bIniciar.setStyle(normalStyle);
+    }
+
+    @FXML
+    private void resaltar(MouseEvent event) {
+        String hoverStyle = "-fx-background-color: #3486eb; -fx-text-fill: white;";
+        bIniciar.setStyle(hoverStyle);
     }
 }

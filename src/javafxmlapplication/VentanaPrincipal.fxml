@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -29,67 +30,80 @@
                   <Font name="Franklin Gothic Heavy" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="boton_Inicio" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-radius: 3px;" text="Inicio" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
+            <ToggleButton fx:id="boton_Inicio" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarInicio" onMouseExited="#noInicio" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Inicio" textFill="NAVY">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/casa.png" />
                      </image>
                   </ImageView>
                </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="boton_AñadirGasto" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarGasto" onMouseExited="#noGasto" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Añadir Gasto" textFill="NAVY">
                <font>
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
-            </Button>
-            <Button fx:id="boton_AñadirGasto" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Gasto" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/suma.png" />
                      </image>
                   </ImageView>
                </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="boton_AnadirCateg" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarCategoria" onMouseExited="#noCategoria" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Añadir Categoria" textFill="NAVY" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
-            </Button>
-            <Button fx:id="boton_AnadirCateg" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white; -fx-border-style: rounded;" text="Categoría" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-17.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/suma.png" />
                      </image>
                   </ImageView>
                </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="boton_Historial" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarVisualizar" onMouseExited="#noVisualizar" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Visualizar Cuenta" textFill="NAVY" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
-            </Button>
-            <Button fx:id="boton_Historial" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Historial" textFill="NAVY" translateY="30.0" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-25.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/historial.png" />
                      </image>
                   </ImageView>
                </graphic>
+            </ToggleButton>
+            <ToggleButton fx:id="boton_VisualizarCategorias" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarVisualizarCat" onMouseExited="#noVisCat" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Visualizar Categorias" textFill="NAVY" wrapText="true">
                <font>
                   <Font name="Franklin Gothic Heavy" size="14.0" />
                </font>
-            </Button>
-            <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES" />
-            <Button fx:id="boton_AjustesDeCuenta" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Perfil" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-35.0">
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Resources/lapiz.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <VBox fillWidth="false" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="SOMETIMES" />
+            <ToggleButton fx:id="boton_AjustesDeCuenta" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseEntered="#resaltarDatos" onMouseExited="#noDatos" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Cambiar datos" textFill="NAVY" wrapText="true">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Resources/perfil.png" />
-                     </image></ImageView>
+                     </image>
+                  </ImageView>
                </graphic>
-               <font>
-                  <Font name="Franklin Gothic Heavy" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="boton_CerrarSesion" alignment="CENTER" mnemonicParsing="false" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Cerrar sesión" textFill="NAVY" VBox.vgrow="SOMETIMES">
+            </ToggleButton>
+            <Button fx:id="boton_CerrarSesion" alignment="CENTER" mnemonicParsing="false" onMouseEntered="#resaltarCerrar" onMouseExited="#noCerrar" prefHeight="15.0" prefWidth="166.0" style="-fx-background-color: white;" text="Cerrar sesión" textFill="NAVY" VBox.vgrow="SOMETIMES">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" translateX="-10.0">
                      <image>
